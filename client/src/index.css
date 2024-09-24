@@ -74,8 +74,12 @@ input{
   max-width: 552px !important; 
 }
 
-.pizzaCardContainer::-webkit-scrollbar{
+.pizzaCardContainer::-webkit-scrollbar,.overflow_restaurant::-webkit-scrollbar{
   display: none;
+}
+
+.restaurantList{
+  height: 442px;
 }
 
 .order_usss {
@@ -101,6 +105,11 @@ input{
   grid-template-columns: repeat(auto-fill,minmax(390px,1fr));
   max-width: 1300px;
   gap:40px 0px;
-  margin:30px  auto;
+  margin:0  auto;
   place-items: center;
+}
+
+.custom_grid_typo{
+  max-width: 1300px;
+  margin:0  auto;
 }
