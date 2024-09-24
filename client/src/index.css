@@ -1,69 +1,106 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-/* 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
-}
 
-/* a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-} */
 
-/* body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-} */
-
-h1 {
+/* h1 {
   font-size: 3.2em;
   line-height: 1.1;
   text-align: center;
-}
+} */
+
 /* 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.container{
+  width: 552px;
+  margin: 30px 0;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.entry_area{
+  position: relative;
+  line-height: 40px;
+  height: 40px;
+  width: 100%;
+}
+
+input{
+  position: absolute;
+  width: 100%;
+  outline: none;
+  padding: 0 30px;
+  font-size: 2.2em;
+  border-radius: 10px;
+  outline: none;
+  border: 2px solid #FF9921;
+  line-height: 50px;
+  transition: 0.1s ease;
+  background: transparent;
+  z-index: 1111;
+}
+
+.label{
+  position:absolute;
+  font-size: 1.1em;
+  padding: 0 25px;
+  margin: 0 20px;
+  transition: 0.2s ease;
+  color: #FF9921;
+  background-color: white;
 } */
+
+
+/* input:focus{
+  color: #2167ff;
+  border:4px solid #2167ff;
+} */
+
+ /* .label{
+  color: #2167ff;
+  height: 30px;
+  line-height: 30px;
+  transform: translate(-15px , -16px) scale(0.88);
+  z-index: 1115;
+} */
+
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+}
+
+.width{
+  max-width: 552px !important; 
+}
+
+.pizzaCardContainer::-webkit-scrollbar{
+  display: none;
+}
+
+.order_usss {
+  background-image: linear-gradient(90.23deg, #FF8100 -2.97%, #FFBE71 93.66%);
+  background-clip: text;
+  -webkit-background-clip: text; /* Ensures compatibility with WebKit browsers */
+  -webkit-text-fill-color: transparent; /* Makes the text transparent to show the gradient */
+  font-size: 45px;
+}
+
+
+.order_us{
+  background-image: linear-gradient(310deg,#000000, #e33f00);
+  -webkit-text-fill-color: transparent;
+  /* -webkit-background-clip: text; */
+  background-clip: text;
+  color: rgb(75,69,111);
+  font-size: 45px;
+}
+
+.custom_grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(390px,1fr));
+  max-width: 1300px;
+  gap:40px 0px;
+  margin:30px  auto;
+  place-items: center;
+}

@@ -1,11 +1,66 @@
 
-
-
+import { Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
+import { Link } from 'react-router-dom';
+import pizzaImg1 from '../../../assets/image/emojione_pizza.png';
+import pizzaImg2 from '../../../assets/image/emojione_p.png';
 
 const LogIn = () => {
   return (
-    <div>LogIn</div>
+    <div className="min-h-screen">
+      <div className="flex">
+        <div className="bg-[#FF9921] hidden w-full md:w-1/2 md:flex flex-col justify-center min-h-screen items-center">
+          <img src={pizzaImg2} alt="pizza" />
+        </div>
+
+        <div className=" w-full md:w-1/2 flex flex-col justify-center items-center mx-auto px-8 h-screen">
+          <form  className="flex flex-col gap-4 max-w-[552px] w-full" >
+            <div className='flex gap-2 items-center py-8'>
+              <img src={pizzaImg1} alt="" />
+              <span className='text-[#AF5901] text-[20px] font-medium'>Pizza</span>
+            </div>
+
+            <div>
+              <TextField
+                required
+                type='email'
+                id="outlined-helperText"
+                label="Email Address"
+                defaultValue="john@gmail.com"
+                fullWidth
+              />
+            </div>
+
+            <div>
+              <TextField
+                id="outlined-helperText"
+                label="Password"
+                type='password'
+                defaultValue="*********"
+                fullWidth
+              />
+            </div>
+
+            <div>
+              <FormControlLabel control={<Checkbox />} label="Remember Me" />
+            </div>
+
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{ backgroundColor: '#FF9921', color: 'white' }}
+            >
+              LOGIN
+            </Button>
+
+            <div className='text-center flex gap-3 justify-center'>
+              <span>Haven't an account</span>
+              <Link to="/register" className='text-[#FF9921]'>Sign Up</Link>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   )
 }
 
-export default LogIn
+export default LogIn;

@@ -1,8 +1,11 @@
+import LogIn from "../../components/auth/LogIn/LogIn"
 
 
 const AuthPage = () => {
   return (
-    <div>AuthPage</div>
+    <div>
+       <LogIn />
+    </div>
   )
 }
 
