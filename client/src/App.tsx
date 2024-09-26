@@ -18,7 +18,6 @@ function App() {
              <Route path="/" element={<Home/>} />
              <Route path="/login" element={<AuthPage/>} />
              <Route path="/register" element={<Register/>} />
-             <Route path="/register" element={<Register/>} />
              <Route path="/order" element={<OrderDetail />} />
              <Route path="/order/:id" element={<OrderHistory />} />
              <Route path="/admin_register" element={<AdminRegistration />} />
