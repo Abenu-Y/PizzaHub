@@ -17,10 +17,8 @@ const Register = () => {
                        <img src={pizzaImg2}  alt="pizza"  />
                </div>
 
-              
                <div className="flex flex-col items-center justify-center flex-1 h-screen px-8 mx-auto">
                     
-
                            <form className='flex flex-col gap-4 max-w-[552px] w-full'>
                                   <div className='flex items-center gap-2 py-8'>
                                       <img src={pizzaImg1} alt="" />
@@ -73,8 +71,7 @@ const Register = () => {
                                           />
                                   </div>
 
-
-                                  <div className={""}>
+                                 <div className={""}>
                                        <TextField
                                             id="outlined-helperText"
                                             label="Location"
@@ -91,9 +88,7 @@ const Register = () => {
                                             fullWidth
                                           />
                                   </div>
-
                   
-
                                   <div>
                                       <FormControlLabel  control={<Checkbox />} label="I accept the Terms and Conditions" />
                                   </div>
@@ -111,14 +106,7 @@ const Register = () => {
                                      <Link to="/login" className='text-[#FF9921]'>Login</Link>
                                 </div>
                       
-
-
-                                  
                            </form>
-
-         
-
-                   
                </div>
         </div>
     </div>

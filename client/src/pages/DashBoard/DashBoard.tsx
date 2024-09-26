@@ -12,7 +12,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import DashAddMenu from "../../components/DashBoard/DashAddMenu";
+import MyTable from "../../components/MyDataTable/MyDataTable"
 function createData(
     name: string,
     calories: number,
@@ -58,39 +59,12 @@ const DashBoard = () => {
                </div>
         </div>
         
-        <div className="w-[1142px] mx-auto relative top-[87px]" style={{boxShadow: "0px 0px 15px 0px #0000000D"}}>
-        <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Topping</TableCell>
-            <TableCell align="right">Quantity</TableCell>
-            <TableCell align="right">Customer No.</TableCell>
-            <TableCell align="right">Created at</TableCell>
-            <TableCell align="right">Status</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
-              <TableCell align="right">{row.fat}</TableCell>
-              <TableCell align="right">{row.carbs}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-              <TableCell align="right">{row.protein}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+        <div className="w-[1142px] mx-auto relative top-[20px]" style={{boxShadow: "0px 0px 15px 0px #0000000D"}}>
+               
+                {/* <DashAddMenu /> */}
+               <MyTable />
         </div>
+        
       </div>
 
     </div>

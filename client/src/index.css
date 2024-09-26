@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+.upload-container {
+  @apply flex items-center justify-center;
+}
+
+.upload-button {
+  @apply px-4 py-2 font-semibold text-[#FF9921] transition duration-200 ease-in-out border-2 border-dashed rounded cursor-pointer ;
+}
+
 
 
 /* h1 {
