@@ -1,59 +1,32 @@
-import { Box, Typography } from '@mui/material';
-import RestuarantCard from './RestaurantCard'; 
+import Card from './Card';
+import { MockRestuarnt } from '../../utils/data/constants'
 
 const RestaurantList = () => {
-    type mockObj = {
-        name: string,
-        description: string
-    };
-
-    // Mock restaurant data
-    const MockRestuarnt: mockObj[] = [
-        { name: "Azmera Pizza", description: "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to..." },
-        { name: "Pizza Palace", description: "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to..." },
-        { name: "The Slice", description: "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to..." },
-        { name: "Cheesy Crust", description: "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to..." },
-        { name: "Crust & Crumble", description: "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to..." },
-        { name: "Pizza Perfection", description: "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to..." },
-        { name: "Slice of Heaven", description: "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to..." }
-    ];
 
     return (
-        <Box 
-            sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: "center",
-                background: 'linear-gradient(180deg, rgba(250, 126, 0, 0) 0%, rgba(250, 126, 0, 0.2) 60.5%, rgba(148, 74, 0, 0) 100%)',
-                padding: '40px', 
-            }}
-            className="restaurantList"
-        >
-            <Typography 
-                variant="h4" 
-                component="h2" 
-                sx={{ mb: 4, color: '#00000080', fontSize: '50px', fontWeight: 500 }}
-            >
-                Top Restaurants
-            </Typography>
 
-            <Box 
-                sx={{ 
-                    display: 'flex', 
-                    flexDirection: 'row', 
-                    alignItems: "center",
-                    gap: 2, 
-                    overflowX: 'scroll', 
-                }}
-                className="overflow_restaurant"
-            >
-                {
-                    MockRestuarnt.map((restuarant, index) => (
-                        <RestuarantCard key={index} r_name={restuarant.name} description={restuarant.description} />
-                    ))
-                }
-            </Box>
-        </Box>
+        <div  style={{ backgroundColor: '#FFF8F1', }}>
+             <div className='h-[177px] md:h-[442px]' style={{ background: 'linear-gradient(180deg, rgba(250, 126, 0, 0) 0%, rgba(250, 126, 0, 0.2) 60.5%, rgba(148, 74, 0, 0) 100%)' }}>
+                
+                <div className=' md:max-w-[1440px] mx-auto'>
+                    <div className='max-w-[609px] md:max-w-[1345px] max-h-[118px] md:max-h-[254px] m-auto relative top-[14px] max-md:left-[10px]  md:top-[94px]'>
+                          <div className='flex flex-col  gap-[5px] md:gap-[15px]'>
+                                <h2 className='text-[15px] text-[#00000080] font-semibold md:text-[50px] leading-[22.5px] md:leading-[75px] '>Top Restaurants</h2>
+
+                                <div className='flex flex-row items-center gap-[20px] overflow-x-scroll overflow_restaurant'>
+                                        {
+                                          MockRestuarnt.map((restuarant, index) => (
+                                        <Card key={index} name={restuarant.name} description={restuarant.description} />
+                                         ))
+                                         }
+                                </div>
+                          </div>
+                    </div>
+                </div>
+                
+             </div>
+        </div>
+
     );
 };
 

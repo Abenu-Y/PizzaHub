@@ -11,6 +11,9 @@ export default {
       colors: {
         orangeCustom: '#FF9921', 
       },
+      fontFamily: {
+        roboto: ['Roboto', 'sans-serif'],
+      },
     },
   },
   plugins: [],

@@ -2,7 +2,7 @@ import { Avatar, List, Divider } from '@mui/material';
 import PizzaImg from '../../assets/image/Image.png';
 import avatarImg from '../../assets/image/Ellipse8.png';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type Props = {
   name: string;
@@ -15,6 +15,7 @@ const PizzaCard = ({ name, description, order_status }: Props) => {
   const [path, setPath] = useState(''); 
   const [orderDetail, setOrderDetail] = useState(''); 
   const location = useLocation(); 
+  const navigate= useNavigate()
 
   // Update path and orderDetail when location changes
   useEffect(() => {
@@ -27,7 +28,7 @@ const PizzaCard = ({ name, description, order_status }: Props) => {
   }, [location]);
 
   return (
-    <div className="bg-white shadow-lg p-4 w-[387px] rounded-md">
+    <div className="bg-white shadow-sm p-4 w-[387px] rounded-md">
       
       {/* Image section for pizza */}
       <div className="flex flex-col items-center">
@@ -56,7 +57,7 @@ const PizzaCard = ({ name, description, order_status }: Props) => {
                   {order_status}
                 </span>
               ) : (
-                <button className="bg-[#FF9921] text-white font-semibold rounded-lg px-12 py-3">Order</button>
+                <button onClick={()=>navigate('/order')} className="bg-[#FF9921] text-white font-semibold rounded-lg px-12 py-3">Order</button>
               )}
             </div>
 

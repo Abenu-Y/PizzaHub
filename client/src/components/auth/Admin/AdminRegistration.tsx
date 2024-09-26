@@ -1,10 +1,10 @@
 
-import { Button, Checkbox, Divider, FormControlLabel, List, TextField } from '@mui/material';
+import { Button,  Divider, List, TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
 import pizzaImg1 from '../../../assets/image/emojione_pizza.png';
 import pizzaImg2 from '../../../assets/image/emojione_p.png';
 
-const LogIn = () => {
+const AdminRegistration = () => {
   return (
     <div className="min-h-screen">
       <div className="flex">
@@ -13,6 +13,7 @@ const LogIn = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center w-full h-screen px-8 mx-auto md:w-1/2">
+          
           <form  className="flex flex-col gap-4 max-w-[552px] w-full" >
             <div className='flex items-center gap-2'>
               <img src={pizzaImg1} alt="" />
@@ -21,12 +22,23 @@ const LogIn = () => {
 
             <div className='max-h-[73px] py-[16px] '>
                <div className='text-[24px]'>
-                   Login
+                   Add Admin
                </div>
                <List sx={{ width: '100%', maxWidth: 552, bgcolor: 'background.paper' }} aria-label="mailbox folders">
                   <Divider component="li"  />
                 </List>
-          </div>
+            </div>
+
+            <div>
+              <TextField
+                required
+                type='text'
+                id="outlined-helperText"
+                label="Admin name"
+                defaultValue="john@gmail.com"
+                fullWidth
+              />
+            </div>
 
             <div>
               <TextField
@@ -35,6 +47,17 @@ const LogIn = () => {
                 id="outlined-helperText"
                 label="Email Address"
                 defaultValue="john@gmail.com"
+                fullWidth
+              />
+            </div>
+
+            <div>
+              <TextField
+                required
+                type='number'
+                id="outlined-helperText"
+                label="Phone Number"
+                defaultValue="0911555555"
                 fullWidth
               />
             </div>
@@ -50,7 +73,14 @@ const LogIn = () => {
             </div>
 
             <div>
-              <FormControlLabel control={<Checkbox />} label="Remember Me" />
+              <TextField
+                required
+                type='password'
+                id="outlined-helperText"
+                label="Confirm Password"
+                defaultValue="***********"
+                fullWidth
+              />
             </div>
 
             <Button
@@ -58,13 +88,10 @@ const LogIn = () => {
               type="submit"
               sx={{ backgroundColor: '#FF9921', color: 'white' }}
             >
-              LOGIN
+              CONTINUE
             </Button>
 
-            <div className='flex justify-center gap-3 text-center'>
-              <span>Haven't an account</span>
-              <Link to="/register" className='text-[#FF9921]'>Sign Up</Link>
-            </div>
+        
           </form>
         </div>
       </div>
@@ -72,4 +99,4 @@ const LogIn = () => {
   )
 }
 
-export default LogIn;
+export default AdminRegistration;

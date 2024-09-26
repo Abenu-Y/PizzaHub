@@ -4,20 +4,23 @@ import pizzaImg2 from '../../assets/image/Group7.png';
 import pizzaImg3 from '../../assets/image/Group8.png';
 import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import PizzaCard from "../../components/PizzaCard/PizzaCard";
-
-// Mock pizza data
-const mockPizza = [
-  { name: "Margherita", description: "Tomato, Mozzarella, Bell Peppers, Onions, Olives" },
-  { name: "Hawaiian", description: "Tomato, Mozzarella, Ham, Pineapple" },
-  { name: "Quattro Formaggi", description: "Tomato, Mozzarella, Parmesan, Gorgonzola, Ricotta" },
-  { name: "Quattro Stagioni", description: "Tomato, Mozzarella, Ham, Pineapple, Olives, Artichokes" },
-  { name: "Margherita", description: "Tomato, Mozzarella, Bell Peppers, Onions, Olives" },
-  { name: "Hawaiian", description: "Tomato, Mozzarella, Ham, Pineapple" },
-  { name: "Quattro Formaggi", description: "Tomato, Mozzarella, Parmesan, Gorgonzola, Ricotta" },
-  { name: "Quattro Stagioni", description: "Tomato, Mozzarella, Ham, Pineapple, Olives, Artichokes" },
-];
+import { useState } from "react";
+import { MockPizza } from "../../utils/data/constants";
 
 const OrderDetail = () => {
+  const [item,setItem] = useState(1)
+
+  const Increment =()=>{
+    if(item >=1){
+      setItem(()=>item+1)
+    }
+  }
+  const Decrement =()=>{
+    if(item >1){
+      setItem(()=>item-1)
+    }
+ }
+
   return (
     <div className="bg-[#FFF8F1] p-8">
       
@@ -48,10 +51,10 @@ const OrderDetail = () => {
 
           {/* Quantity and price control */}
           <div className="flex items-center gap-6 py-6 amount">
-            <Button variant="outlined" sx={{ color: "#141414", fontSize: "20px", borderColor: "#FF9921" }}>-</Button>
-            <span>1</span>
-            <Button variant="outlined" sx={{ color: "#141414", fontSize: "20px", borderColor: "#FF9921" }}>+</Button>
-            <span className="text-[#01C550] font-semibold text-2xl">150 <sup className="text-sm text-black">Birr</sup></span>
+            <Button onClick={Decrement} variant="outlined" sx={{ color: "#141414", fontSize: "20px", borderColor: "#FF9921" }}>-</Button>
+            <span>{item}</span>
+            <Button onClick={Increment} variant="outlined" sx={{ color: "#141414", fontSize: "20px", borderColor: "#FF9921" }}>+</Button>
+            <span className="text-[#01C550] font-semibold text-2xl">{150*item} <sup className="text-sm text-black">Birr</sup></span>
           </div>
 
           <Button
@@ -74,7 +77,7 @@ const OrderDetail = () => {
       {/* List of related pizzas */}
       <div className="flex flex-col gap-6 md:flex-row md:overflow-x-scroll pizzaCardContainer">
         {
-          mockPizza.map((pizza, index) => (
+          MockPizza.map((pizza, index) => (
             <PizzaCard key={index} name={pizza.name} description={pizza.description} />
           ))
         }

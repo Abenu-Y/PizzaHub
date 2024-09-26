@@ -1,22 +1,9 @@
-import { Box, Typography } from '@mui/material';
+import { Box} from '@mui/material';
 import PizzaCard from '../PizzaCard/PizzaCard';
+import { MockPizza } from '../../utils/data/constants'
 
 const Fasting = () => {
-    type mockObj = {
-        name: string,
-        description: string
-    }
-
-    // Mock pizza data
-    const MockPizza: mockObj[] = [
-        { name: "Margherita", description: "Tomato, Mozzarella, Bell Peppers, Onions, Olives" },
-        { name: "Hawaiian", description: "Tomato, Mozzarella, Ham, Pineapple, Olives" },
-        { name: "Quattro Formaggi", description: "Tomato, Mozzarella, Parmesan, Gorgonzola, Ricotta" },
-        { name: "Margherita", description: "Tomato, Mozzarella, Bell Peppers, Onions, Olives" },
-        { name: "Hawaiian", description: "Tomato, Mozzarella, Ham, Pineapple, Olives" },
-        { name: "Quattro Formaggi", description: "Tomato, Mozzarella, Parmesan, Gorgonzola, Ricotta" }
-    ];
-
+  
     return (
         <Box 
             sx={{
@@ -24,16 +11,13 @@ const Fasting = () => {
                 flexDirection: 'column',
                 justifyContent: "center",
                 background: '#FFF8F1',
-                padding: '50px', 
+                paddingBlock: '50px', 
+              
             }}
+
+            className="relative left-[30px] md:left-[90px]"
         >
-            <Typography 
-                variant="h4" 
-                component="h2" 
-                sx={{ mb: 4, color: '#00000080', fontSize: '50px', fontWeight: 500 }}
-            >
-                Fasting
-            </Typography>
+            <h2 className='text-[15px] max-w-[1261px] text-[#00000080] font-semibold md:text-[50px] leading-[22.5px] md:leading-[75px] max-h-[75px] mb-4'>Fatsing</h2>
 
             <Box 
                 sx={{ 

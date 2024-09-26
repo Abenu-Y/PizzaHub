@@ -1,42 +1,61 @@
-import { Link, useLocation } from "react-router-dom";
+
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/image/emojione_pizza.png';
-import { useEffect, useState } from "react";
+import MenuIcon from '@mui/icons-material/Menu';
 
-const Header = () => {
-
-  const location = useLocation(); 
-  const pathname = location.pathname; 
-  const [path, setPath] = useState(''); 
-
-  useEffect(() => {
-    setPath(pathname);
-  }, [pathname]);
+function Header() {
+  const [isOpen, setIsOpen] = useState(false); 
+  const path = window.location.pathname; 
 
   return (
-    <div style={{ boxShadow: `${path === '/' && "0px 0px 15px 0px #FF810033"}` }}>
-      
-      <div className="flex items-center justify-between px-8 py-4">
-
+    <div>
+      <div className="flex items-center justify-between px-8 py-4 max-w-[1440px]">
         <Link to='/' className="flex items-center gap-2">
-          <img src={logo} alt="Pizza logo" />
-          <h1 className="text-2xl text-[#AF5901] text-[20px] font-semibold">Pizza</h1>
+          <img src={logo} alt="Pizza logo" className="h-10" />
         </Link>
 
-        <div className="flex flex-row gap-12">
+        {/* Desktop Links */}
+        <div className="flex justify-center flex-grow space-x-12">
           <Link to="/" className="text-xl font-semibold">Home</Link>
           <Link to="/order" className="text-xl font-semibold">Orders</Link>
-          <Link to="/about" className="text-xl font-semibold">Who we are</Link>
+          <Link to="/about" className="hidden text-xl font-semibold md:block">Who we are</Link>
         </div>
 
-        {/* Register button appears only on the home page */}
-        <div>
-          {
-            path === '/' && (
-              <Link to="/register" className="bg-[#FF9921] flex items-center justify-center text-2xl text-white rounded-lg py-2 px-8 font-semibold">
-                Register
-              </Link>
-            )
-          }
+        {/* Register Button (visible only on the home page) */}
+        <div className="hidden md:block">
+          {path === '/' && (
+            <Link to="/register" className="bg-[#FF9921] flex items-center justify-center text-2xl text-white rounded-lg py-2 px-8 font-semibold">
+              Register
+            </Link>
+          )}
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="flex items-center justify-center p-2 text-gray-500 rounded-md md:hidden hover:bg-gray-100"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-controls="mobile-menu"
+          aria-expanded={isOpen}
+        >
+          <span className="sr-only">Open main menu</span>
+          {/* Icon for mobile menu toggle */}
+          <MenuIcon />
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div className={`md:hidden ${isOpen ? 'block' : 'hidden'}`} id="mobile-menu">
+        <div className="flex flex-col items-center px-8 py-4 space-y-2 bg-white shadow">
+       
+          {isOpen && (
+            <>
+              <Link to="/about" className="text-xl font-semibold">Who we are</Link>
+              {path === '/' && (
+                <Link to="/register" className="text-xl font-semibold">Register</Link>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>

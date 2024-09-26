@@ -4,6 +4,8 @@ import AuthPage from "./pages/auth/AuthPage"
 import Register from "./components/auth/Register/Register"
 import OrderDetail from "./pages/Order/OrderDetail"
 import OrderHistory from "./pages/Order/OrderHistory"
+import AdminRegistration from "./components/auth/Admin/AdminRegistration"
+import DashBoard from "./pages/DashBoard/DashBoard"
 
 
 function App() {
@@ -15,8 +17,11 @@ function App() {
              <Route path="/" element={<Home/>} />
              <Route path="/login" element={<AuthPage/>} />
              <Route path="/register" element={<Register/>} />
+             <Route path="/register" element={<Register/>} />
              <Route path="/order" element={<OrderDetail />} />
              <Route path="/order/:id" element={<OrderHistory />} />
+             <Route path="/admin_register" element={<AdminRegistration />} />
+             <Route path="/side" element={<DashBoard />} />
          </Routes>
       </Router>
     </>
