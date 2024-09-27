@@ -18,7 +18,7 @@ CREATE TABLE users (
 -- Restaurants Table (MUST be created before user_roles)
 CREATE TABLE restaurants (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(100) NOT NULL,
+  name VARCHAR(100) UNIQUE NOT NULL,
   address TEXT,
   phone VARCHAR(15),
   created_at TIMESTAMP DEFAULT NOW()

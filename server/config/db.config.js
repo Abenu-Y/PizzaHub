@@ -54,13 +54,13 @@ testConnection()
 async function query(sql, params) {
     try {
         // Execute the query and destructure the result into rows and fields
-        const rows = await dbConnection.query(sql, params);
+        const response = await dbConnection.query(sql, params);
 
         // Log the query results for debugging
-        console.log('Query result:', rows);
+        // console.log('Query result:', response);
         
         // Return rows (results) for the caller to handle
-        return rows;
+        return response;
     } catch (error) {
         console.error('Error executing query:', error);
         throw error; // Throw error for the caller to handle

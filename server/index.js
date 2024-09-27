@@ -9,7 +9,7 @@ app.get('/',(req,res)=>{
     res.send('Hello Our Customers, This is Online Pizza Ordering App')
 })
 
-
+app.use(express.json())
 app.use(routes)
 
 // async function insertCar(brand, model, year) {
