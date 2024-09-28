@@ -2,17 +2,20 @@
 CREATE TABLE roles (
   id SERIAL PRIMARY KEY,
   name VARCHAR(50) UNIQUE NOT NULL,  -- 'Customer', 'Super Admin', 'Kitchen Manager'
-  description TEXT
+  description TEXT,
+  deleted_at TIMESTAMP DEFAULT NULL  -- Soft delete column
 );
+
 -- Users Table
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100), -- Optional, can be NULL
   email VARCHAR(100) UNIQUE NOT NULL,
   password VARCHAR(255) NOT NULL,
-  location VARCHAR(255) NOT NULL, -- Location field added and NOT NULL
-  phone VARCHAR(15) NOT NULL, -- Phone number field added and NOT NULL
-  created_at TIMESTAMP DEFAULT NOW()
+  location VARCHAR(255) NOT NULL, 
+  phone VARCHAR(15) NOT NULL, 
+  created_at TIMESTAMP DEFAULT NOW(),
+  deleted_at TIMESTAMP DEFAULT NULL  -- Soft delete column
 );
 
 -- Restaurants Table (MUST be created before user_roles)
@@ -21,7 +24,8 @@ CREATE TABLE restaurants (
   name VARCHAR(100) UNIQUE NOT NULL,
   address TEXT,
   phone VARCHAR(15),
-  created_at TIMESTAMP DEFAULT NOW()
+  created_at TIMESTAMP DEFAULT NOW(),
+  deleted_at TIMESTAMP DEFAULT NULL  -- Soft delete column
 );
 
 -- User Roles (Many-to-Many) - After restaurants
@@ -29,6 +33,7 @@ CREATE TABLE user_roles (
   user_id INT,
   role_id INT,
   restaurant_id INT,
+  deleted_at TIMESTAMP DEFAULT NULL,  -- Soft delete column
   PRIMARY KEY (user_id, role_id, restaurant_id),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
   FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
@@ -40,6 +45,7 @@ CREATE TABLE restaurant_admins (
   restaurant_id INT,
   user_id INT,
   role_id INT,
+  deleted_at TIMESTAMP DEFAULT NULL,  -- Soft delete column
   PRIMARY KEY (restaurant_id, user_id, role_id),
   FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
@@ -53,6 +59,7 @@ CREATE TABLE pizzas (
   restaurant_id INT,
   base_price DECIMAL(10, 2) NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
+  deleted_at TIMESTAMP DEFAULT NULL,  -- Soft delete column
   FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
 );
 
@@ -60,7 +67,9 @@ CREATE TABLE pizzas (
 CREATE TABLE toppings (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) NOT NULL,
-  created_at TIMESTAMP DEFAULT NOW()
+  price DECIMAL(5, 2) DEFAULT 0.00,
+  created_at TIMESTAMP DEFAULT NOW(),
+  deleted_at TIMESTAMP DEFAULT NULL  -- Soft delete column
 );
 
 -- Pizza Toppings (Many-to-Many)
@@ -80,6 +89,7 @@ CREATE TABLE orders (
   status VARCHAR(50) DEFAULT 'Pending',  -- 'Preparing', 'Delivered', etc.
   total_price DECIMAL(10, 2) NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
+  deleted_at TIMESTAMP DEFAULT NULL,  -- Soft delete column
   FOREIGN KEY (customer_id) REFERENCES users(id) ON DELETE CASCADE,
   FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
 );
