@@ -14,6 +14,9 @@ export default {
       fontFamily: {
         roboto: ['Roboto', 'sans-serif'],
       },
+      borderRadius: {
+        '20': '50px',
+      },
     },
   },
   plugins: [],

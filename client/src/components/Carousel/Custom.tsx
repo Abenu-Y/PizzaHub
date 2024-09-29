@@ -1,22 +1,13 @@
 
 import { useState, useEffect } from 'react';
 import './Carousel.css'; 
+import { carouselImage} from '../../utils/data/image'
 
-interface CarouselItem {
-    id: number;
-    content: string;
-}
 
 const Carousel = () => {
     const [currentIndex, setCurrentIndex] = useState<number>(0);
-
-    const items: CarouselItem[] = [
-        { id: 1, content: "Item 1" },
-        { id: 2, content: "Item 2" },
-        { id: 3, content: "Item 3" },
-    ];
-
-    const totalItems = items.length;
+ 
+    const totalItems = carouselImage.length;
 
     const showSlide = (index: number) => {
         setCurrentIndex(index);
@@ -36,16 +27,16 @@ const Carousel = () => {
     }, []);
 
     return (
-        <div className="rounded-2xl carousel-container">
+        <div className=" carousel-container">
             <div className="carousel-inner " style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-                {items.map((item) => (
-                    <div key={item.id} className="carousel-item">
-                        {item.content}
+                {carouselImage.map((item,idx) => (
+                    <div key={idx} className="carousel-item">
+                        <img src={item} alt="" />
                     </div>
                 ))}
             </div>
             <div className="carousel-pagination">
-                {items.map((_, index) => (
+                {carouselImage.map((_, index) => (
                     <span
                         key={index}
                         className={`dot ${index === currentIndex ? 'active' : ''}`}

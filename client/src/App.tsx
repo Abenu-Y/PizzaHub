@@ -21,7 +21,7 @@ function App() {
              <Route path="/order" element={<OrderDetail />} />
              <Route path="/order/:id" element={<OrderHistory />} />
              <Route path="/admin_register" element={<AdminRegistration />} />
-             <Route path="/side" element={<DashBoard />} />
+             <Route path="/dashboard" element={<DashBoard />} />
              <Route path="/table" element={<MyTable />} />
          </Routes>
       </Router>

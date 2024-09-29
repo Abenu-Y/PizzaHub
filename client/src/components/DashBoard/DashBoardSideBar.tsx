@@ -2,9 +2,6 @@ import { useEffect, useState } from 'react';
 import { Drawer, List, ListItemButton, ListItemIcon, ListItemText, IconButton, Box, Divider, Typography } from '@mui/material';
 import {
   MenuOpen as MenuIcon,
-  Fastfood as FastfoodIcon,
-  Group as GroupIcon,
-  AssignmentInd as AssignmentIndIcon,
   Login as ExitToAppIcon
 } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
@@ -82,11 +79,9 @@ const DashBoardSideBar = () => {
           selected={tab === 'orders'}
           component={Link}
           to="/dashboard?tab=orders"
-          sx={{ textDecoration: 'none' }}
+          sx={{ textDecoration: 'none',bgcolor:"#FF810066" }}
         >
           <ListItemIcon>
-            {/* <FastfoodIcon sx={{ color: '#000' }} />
-             */}
              <img src={orderIcon} alt="orderIcon" />
           </ListItemIcon>
           <ListItemText primary="Orders" />
@@ -94,14 +89,13 @@ const DashBoardSideBar = () => {
 
         {/* Add Menu Tab */}
         <ListItemButton
-          selected={tab === 'addmenu'}
+          selected={tab === 'menu'}
           component={Link}
-          to="/dashboard?tab=addmenu"
+          to="/dashboard?tab=menu"
           sx={{ textDecoration: 'none', color: 'inherit' }}
           
         >
           <ListItemIcon>
-            {/* <FastfoodIcon sx={{ color: '#000' }} /> */}
             <img src={pizzaIcon} alt="orderIcon" />
           </ListItemIcon>
           <ListItemText primary="Add Menu" />
@@ -115,7 +109,6 @@ const DashBoardSideBar = () => {
           sx={{ textDecoration: 'none', color: 'inherit' }}
         >
           <ListItemIcon>
-            {/* <GroupIcon sx={{ color: '#000' }} /> */}
             <img src={roleIcon} alt="orderIcon" />
           </ListItemIcon>
           <ListItemText primary="User" />
@@ -129,7 +122,6 @@ const DashBoardSideBar = () => {
           sx={{ textDecoration: 'none', color: 'inherit' }}
         >
           <ListItemIcon>
-            {/* <AssignmentIndIcon sx={{ color: '#000' }} /> */}
             <img src={profileIcon} alt="orderIcon" />
           </ListItemIcon>
           <ListItemText primary="Role" />

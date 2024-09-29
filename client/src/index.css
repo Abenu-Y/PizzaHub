@@ -10,6 +10,9 @@
   @apply px-4 py-2 font-semibold text-[#FF9921] transition duration-200 ease-in-out border-2 border-dashed rounded cursor-pointer ;
 }
 
+.mozzarella-button {
+  @apply px-[10px] py-[2px] text-white bg-green-500 rounded-full w-[90px] text-[14px] leading-[21px];
+}
 
 
 /* h1 {
@@ -121,3 +124,4 @@ input{
   max-width: 1300px;
   margin:0  auto;
 }
+
