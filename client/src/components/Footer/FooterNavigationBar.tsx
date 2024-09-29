@@ -6,7 +6,7 @@ import { TextField } from "@mui/material";
 const FooterNavigationBar = () => {
   return (
     <div className="bg-[#CCB691]">
-      <div className="flex items-center justify-between px-8 py-24">
+      <div className="flex items-center justify-between px-8 py-24 max-w-[1440px] mx-auto">
         
         <div className="flex flex-col justify-center gap-8 font-semibold md:flex-row">
           <Link to="/">Home</Link>

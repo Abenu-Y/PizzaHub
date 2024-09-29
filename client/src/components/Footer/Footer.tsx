@@ -11,7 +11,7 @@ const Footer = () => {
       <FooterNavigationBar />
 
       <div className="bg-[#000000] text-white">
-        <div className="flex flex-col items-center justify-center gap-8 p-8 text-sm md:flex-row md:justify-between">
+        <div className="max-w-[1440px] mx-auto flex flex-col items-center justify-center gap-8 p-8 text-sm md:flex-row md:justify-between">
           <div className="flex flex-col items-center gap-6 md:flex-row">
             <span>@{new Date().getFullYear()} Pizza All Rights Reserved.</span>
             <a href="">Terms &amp; Conditions</a>

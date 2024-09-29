@@ -16,7 +16,7 @@ function Header() {
         </Link>
 
         {/* Desktop Links */}
-        <div className="flex justify-center flex-grow space-x-12">
+        <div className="flex justify-center flex-grow space-x-16 md:space-x-28">
           <Link to="/" className="text-xl font-semibold">Home</Link>
           <Link to="/order" className="text-xl font-semibold">Orders</Link>
           <Link to="/about" className="hidden text-xl font-semibold md:block">Who we are</Link>
