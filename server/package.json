@@ -10,6 +10,7 @@
   "author": "Abenezer Y",
   "license": "MIT",
   "dependencies": {
+    "@casl/ability": "^6.7.1",
     "bcrypt": "^5.1.1",
     "express": "^4.21.0",
     "http-status-codes": "^2.3.0",

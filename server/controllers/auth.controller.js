@@ -45,7 +45,7 @@ const login = async (req,res,next) =>{
         const response = await authService.login(req.body)
         // console.log("1",response)
         if(response.status === 200){
-            res.status(200).json({message: 'User logged in successfully.'})
+            res.status(200).json(response);
         } else{
             next(errorHandler(401,'Invalid credentials'))
         }

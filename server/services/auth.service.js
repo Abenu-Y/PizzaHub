@@ -1,7 +1,8 @@
 
 const dbConnection = require('../config/db.config')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken');
+const { getUserInfo } = require('./role.service');
 
 
 const checkIfUserExists = async (email) =>{
@@ -74,6 +75,7 @@ const isRestaurantNameTaken = async(restaurant_name) =>{
 
 }
 
+
 const register =async(userData) =>{
     const { email , password , phoneNumber, location} = userData;
     let response ={};
@@ -114,11 +116,19 @@ const login = async(loginData) =>{
         // console.log(result,email)
         if(result){
             const [user]= await getUserByEmail(email);
+            const res = await getUserInfo(user.id);
+
             // console.log("first",user.password)
+            // console.log(user)
 
             let isMatch =   await bcrypt.compare(password,user.password)
 
             if(isMatch){
+                console.log(res)
+                const token = jwt.sign({ id: user.id, restaurantId: res }, process.env.JWT_SECRET, {
+                    expiresIn: '1h', 
+                  });
+                response.x_access_token = token;
                 response.status = 200;
                 response.message ='user successfully logged in.'
                 return response;
@@ -138,17 +148,21 @@ const login = async(loginData) =>{
 const makeUserSuperAdmin = async(adminData) =>{
     const { adminName,restaurantName, email , phoneNumber, location,user_id} = adminData;
     let response={};
+    // console.log(user_id)
     const update_statement = `UPDATE users SET name = $1 WHERE email = $2`;
     const insert_statement = `INSERT INTO restaurants (name,address,phone) VALUES ($1,$2,$3)`;
+    // const insert_superadmin_role =`INSERT INTO roles (name,description,restaurant_id) VALUES($1,$2,$3)`;
     const insert_USER_role =`INSERT INTO user_roles (user_id,role_id,restaurant_id) VALUES($1, $2, $3)`;
     const inset_ADMIN = `INSERT INTO restaurant_admins(restaurant_id , user_id , role_id) VALUES($1,$2,$3)`;
+    
 
     try {
         const result_1 = await dbConnection.query(update_statement,[adminName,email])
         const result_2 = await dbConnection.query(insert_statement,[restaurantName,location,phoneNumber])
         const [restaurant] =await getRestaurantByName(restaurantName);
-        const result_3 = await dbConnection.query(insert_USER_role,[user_id,1, restaurant.id]);
-        const result_4 = await dbConnection.query(inset_ADMIN,[restaurant.id,user_id,1]);
+        // console.log(restaurant)
+        const result_4 = await dbConnection.query(insert_USER_role,[user_id,1, restaurant.id]);
+        const result_5 = await dbConnection.query(inset_ADMIN,[restaurant.id,user_id,1]);
         
         response.status = 200;
         response.message = 'Admin successfully created.';

@@ -31,13 +31,13 @@ const AddRoleModal: React.FC<CustomDialogProps> = ({ open, onClose }) => {
                 <div className="text-2xl text-[#00000080] leading-8 mb-2">
                   Permissions
                 </div>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2 pl-4">
                   {roles.map((label, idx) => (
                     <FormControlLabel
                       key={idx}
                       control={
                         <Checkbox
-                          sx={{ color: '#FF9921' }}
+                          sx={{ color: '#FF9921' ,}}
                           defaultChecked={idx === 0}
                         />
                       }
@@ -55,7 +55,7 @@ const AddRoleModal: React.FC<CustomDialogProps> = ({ open, onClose }) => {
                   borderRadius: '15px',
                   marginInline: 'auto',
                 }}
-                className="flex items-center"
+                className="flex items-center "
               >
                 Update
               </Button>

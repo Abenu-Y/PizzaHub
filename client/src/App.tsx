@@ -6,7 +6,6 @@ import OrderDetail from "./pages/Order/OrderDetail"
 import OrderHistory from "./pages/Order/OrderHistory"
 import AdminRegistration from "./components/auth/Admin/AdminRegistration"
 import DashBoard from "./pages/DashBoard/DashBoard"
-import MyTable from "./components/MyDataTable/MyDataTable"
 
 
 function App() {
@@ -22,7 +21,6 @@ function App() {
              <Route path="/order/:id" element={<OrderHistory />} />
              <Route path="/admin_register" element={<AdminRegistration />} />
              <Route path="/dashboard" element={<DashBoard />} />
-             <Route path="/table" element={<MyTable />} />
          </Routes>
       </Router>
     </>
