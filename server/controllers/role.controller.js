@@ -28,5 +28,40 @@ const createRole = async(req,res,next) =>{
     
 }
 
+const getRoles  = async(req,res,next) =>{
+    const restaurantId = req.user.restaurantId[0].restaurant_id;
+    try {
+         const response = await roleService.getRoles(restaurantId)
+         if(response.status !== 200){
+            next(errorHandler(400,'rror fetching role and inserting permissions'))
+         }
 
-module.exports = { createRole };
+         return res.status(200).json(response);
+
+    } catch (error) {
+        next(error)
+    }
+
+}
+
+
+const dropRoles = async(req,res,next) =>{
+    try {
+
+        const { roleId ,restaurantId } = req.body;
+        const response = await roleService.dropRoles(restaurantId,roleId);
+
+        if(response?.status !== 200){
+              return next(errorHandler(400,'This roles doesnot exist.'))
+        }
+
+
+        return res.status(200).json(response)
+        
+    } catch (error) {
+        next(error)
+    }
+}
+
+
+module.exports = { createRole , getRoles  , dropRoles};

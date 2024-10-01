@@ -14,7 +14,7 @@ async function defineAbilitiesFor(user) {
       WHERE ur.user_id = $1 AND ur.restaurant_id = $2
     `;
 
-    console.log("0",user.restaurantId[0].restaurant_id)
+    console.log("0",user.restaurantId)
 
     const { rows: permissions } = await db.query(rolePermissionsQuery, [user.id, user.restaurantId[0].restaurant_id]);
 //    console.log(permissions)

@@ -94,4 +94,70 @@ const createRoleandGivePermission = async (roleName, permissions, restaurantId) 
     }
 };
 
-module.exports ={ getUserInfo, getRoleId ,createRoleandGivePermission};
+
+const getRoles = async(restaurantId) =>{
+  let response ={};
+  try {
+
+    const getRolesResponse = `SELECT 
+                                  roles.name, 
+                                  roles.created_at, 
+                                  role_permissions.resource, 
+                                  role_permissions.action 
+                              FROM 
+                                  restaurant_admins 
+                              JOIN 
+                                  roles ON restaurant_admins.role_id = roles.id 
+                              JOIN 
+                                  role_permissions ON roles.id = role_permissions.role_id 
+                              WHERE 
+                                  restaurant_admins.restaurant_id = $1  
+                                  AND restaurant_admins.deleted_at IS NULL  
+                                  AND roles.deleted_at IS NULL
+                         `
+     console.log(getRolesResponse)                    
+
+    const {rows} =  await dbConnection.query(getRolesResponse,[restaurantId])
+    if(rows.length > 0){
+      response.status = 200;
+      response.data = rows;
+      return response;
+    }
+
+    return null;
+    
+  } catch (error) {
+    console.error('Error fetching role and permissions:', error);
+    response.status = 500;
+    response.message = 'Error fetching role and  permissions.';
+    return response;
+  }
+}
+
+
+const dropRoles = async(restaurantId,roleID) =>{
+  try {
+    const drop_role = `UPDATE restaurant_admins  SET deleted_at = NOW()  WHERE restaurant_id = $1  AND role_id = $2`;
+    const drop_role_from_user_roles = `UPDATE user_roles  SET deleted_at = NOW()  WHERE restaurant_id = $1  AND role_id = $2`;
+    const response = await dbConnection.query(drop_role, [restaurantId,roleID])
+    const response1 = await dbConnection.query(drop_role_from_user_roles,[restaurantId,roleID])
+    console.log(response1)
+
+    if(response.rowCount > 0 && response1.rowCount > 0){
+       return {
+          status:200,
+          message:"roles deleted successfully"
+       }
+      
+    }
+
+    return null; 
+  } catch (error) {
+    console.error('Error deleting role:', error);
+    response.status = 500;
+    response.message = 'Error deleting role.';
+    return response;
+  }
+}
+
+module.exports ={ getUserInfo, getRoleId ,createRoleandGivePermission , getRoles, dropRoles};

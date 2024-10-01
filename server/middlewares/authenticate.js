@@ -19,7 +19,7 @@ function authenticateJWT(req, res, next) {
           }); 
     }
     req.user = user; 
-    //console.log("is",user)// Attach the user object to the request
+    console.log("is",user)// Attach the user object to the request
     next();
   });
 }

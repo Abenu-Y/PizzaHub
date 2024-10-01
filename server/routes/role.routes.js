@@ -6,6 +6,8 @@ const authorize = require('../middlewares/authorize');
 
 
 router.post('/create-role',authenticateJWT,authorize('create','role'),roleControllers.createRole);
+router.get('/roles',authenticateJWT,authorize('read','role'),roleControllers.getRoles)
+router.put('/drop',authenticateJWT,authorize('delete','role'), roleControllers.dropRoles)
 
 
 module.exports = router

@@ -31,7 +31,8 @@ const getUserByEmail = async(email) =>{
         if(rows.length > 0 ){
             return rows;
         } else{
-            return {};
+            // return {};
+            return null;
         }
 
     } catch(error){
@@ -83,6 +84,8 @@ const register =async(userData) =>{
         return response;
     }
 
+    console.log("resg",userData)
+
     try {
 
         const userRegistrationSql = `INSERT INTO users (email,password,location, phone) VALUES($1,$2,$3,$4)`;
@@ -90,7 +93,7 @@ const register =async(userData) =>{
         const hashedPassword = await bcrypt.hash(password, salt);
 
         const result = await dbConnection.query(userRegistrationSql,[email,hashedPassword,location,phoneNumber]);
-        // console.log(result)
+        console.log(result)
 
         if(result.rowCount > 0 ){
             response.status = 201;
