@@ -1,17 +1,40 @@
 
 import { Alert, Button, Checkbox, Divider, FormControlLabel, List, TextField } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import pizzaImg1 from '../../../assets/image/emojione_pizza.png';
 import pizzaImg2 from '../../../assets/image/emojione_p.png';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginformData } from '../../../utils/validation/type';
 import { loginSchema } from '../../../utils/validation/validation';
+import loginService from '../../../services/auth.service'
+import { useState } from 'react';
 
 const LogIn = () => {
+  // Get the "redirectTo" and other state (like itemCount) from the location state
+  const navigate = useNavigate()
+  const location = useLocation();
+  const redirectTo = location.state?.redirectTo || '/';
+  const itemCount = location.state?.itemCount || 1;
+  const [serverError, setServerError] = useState("");
   const { register, handleSubmit, formState: { errors } } = useForm<loginformData>({ resolver: zodResolver(loginSchema) });
   
-  const handleLogin = (data: loginformData) => console.log("form data", data);
+  const handleLogin = async(data: loginformData) => {
+    console.log("form data", data)
+    try {
+      const response = await loginService.logIn(data)
+      console.log("1",response,response.data)
+      if(response.status === 200 && response.data.token){
+        localStorage.setItem("info", JSON.stringify(response.data));
+        // Redirect back to the original page (or default)
+           navigate(redirectTo, { state: { itemCount } });
+      }else{
+        setServerError(response.message);
+      }
+    } catch (error) {
+        setServerError(()=>'Internal Server Error')
+    }
+  };
 
   return (
     <div className="flex min-h-screen">
@@ -26,6 +49,9 @@ const LogIn = () => {
           </div>
           <div className='max-h-[73px] py-[16px]'>
             <div className='text-[24px]'>Login</div>
+            {
+              serverError && <div className='text-red-500'>{serverError}</div>
+            }
             <List sx={{ width: '100%', maxWidth: 552, bgcolor: 'background.paper' }} aria-label="mailbox folders">
               <Divider component="li" />
             </List>
@@ -35,7 +61,7 @@ const LogIn = () => {
               required
               type='email'
               label="Email Address"
-              defaultValue="john@gmail.com"
+              // defaultValue="john@gmail.com"
               fullWidth
               {...register("email")}
             />
@@ -45,7 +71,7 @@ const LogIn = () => {
             <TextField
               label="Password"
               type='password'
-              defaultValue="*********"
+              // defaultValue="*********"
               fullWidth
               {...register("password")}
             />

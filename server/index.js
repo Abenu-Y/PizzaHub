@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const cors = require("cors");
 const PORT = process.env.PORT || 5000;
 const { query } = require('./config/db.config')
 const routes = require('./routes/index')
@@ -9,6 +10,7 @@ app.get('/',(req,res)=>{
     res.send('Hello Our Customers, This is Online Pizza Ordering App')
 })
 
+app.use(cors())
 app.use(express.json())
 app.use(routes)
 

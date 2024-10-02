@@ -6,6 +6,8 @@ const router = express.Router()
 
 
 router.post('/add',authenticateJWT, authorize('create','menu'),menuController.addMenu)
+router.get('/all',menuController.getMenu)
+router.get('/single/:id',menuController.getSinglePizza)
 
 
 module.exports = router;

@@ -22,3 +22,37 @@ export type adminRegisterData ={
   password: string;
   confirmPassword: string;
 }
+
+
+export  type ToppingsFormData = {
+  mozzarella: boolean;
+  tomato: boolean;
+  bellPeppers: boolean;
+  onions: boolean;
+  olives: boolean;
+};
+
+
+export type Topping = {
+  name: string;
+  price: number | null; 
+}
+
+export type Pizza =  {
+  pizza_id: number;
+  pizza_name: string;
+  pizza_base_price: number | string; 
+  restaurant_name: string;
+  restaurant_id:number;
+  toppings: Topping[]; 
+}
+
+export type PizzaId =  {
+  pizza_id: number;
+  pizza_name: string;
+  pizza_base_price: number | string; 
+  restaurant_name: string;
+  restaurant_id:number;
+  topping_id:number;
+  toppings: Topping[]; 
+}

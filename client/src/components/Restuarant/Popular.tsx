@@ -1,7 +1,31 @@
 import PizzaCard from "../PizzaCard/PizzaCard";
-import { MockPizza } from "../../utils/data/constants";
+// import { MockPizza } from "../../utils/data/constants";
+import { useEffect, useState } from "react";
+import {  useLocation } from "react-router-dom";
+import pizzaService  from '../../services/pizza.service'
+import { Pizza } from '../../utils/validation/type'
 
 const Popular = () => {
+    const location = useLocation();
+    const [pizzainfo, setPizzaInfo] = useState<Pizza[]>([])
+    
+  console.log(pizzainfo)
+    const getAllPizza = async() =>{
+         try {
+              const response = await pizzaService.getPizzas();
+            //   console.log(response, response.data)
+              if(response.status === 200){
+                setPizzaInfo(()=>response?.data)
+              }
+         } catch (error) {
+             console.log(error);
+         }
+    }
+
+    useEffect(()=>{
+       getAllPizza();
+    },[location.state])
+    
   return (
     <div className="max-w-[1266px] mx-auto ">
 
@@ -9,8 +33,8 @@ const Popular = () => {
 
         <div className="custom_grid ">
             {
-                MockPizza.map((pizza, index) => (
-                    <PizzaCard name={pizza.name} description={pizza.description} key={index} />
+                pizzainfo.map((pizza, index) => (
+                    <PizzaCard pizza={pizza} key={index} />
                 ))
             }
         </div>

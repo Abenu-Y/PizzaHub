@@ -2,21 +2,37 @@
 import pizzaImg1 from '../../../assets/image/emojione_pizza.png';
 import pizzaImg2 from '../../../assets/image/emojione_p.png';
 import { Alert, Button, Checkbox, FormControlLabel, TextField } from '@mui/material';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate} from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { formData } from '../../../utils/validation/type';
 import { registerSchema } from '../../../utils/validation/validation';
+import authService from '../../../services/auth.service';
+
 
 const Register = () => {
   const location = useLocation();
   const path = location.pathname;
+  const navigation = useNavigate()
 
   const { register, handleSubmit, formState: { errors } } = useForm<formData>({
     resolver: zodResolver(registerSchema)
   });
 
-  const handleRegister = (data: formData) => console.log("form data", data);
+  const handleRegister = async (data: formData) =>{
+     console.log("form data", data)
+    try {
+        const response = await authService.register(data);
+        console.log("first")
+        if(response.status === 201){
+          console.log("register success")
+          navigation('/login')
+        }
+    } catch (error) {
+       console.error(error)
+    }
+    
+    };
 
   return (
     <div className="flex min-h-screen">
@@ -30,15 +46,15 @@ const Register = () => {
             <span className="text-[#AF5901] text-[20px] font-medium">Pizza</span>
           </div>
           {path === '/' && <TextField required label="Admin Name" defaultValue="Super Admin" fullWidth />}
-          <TextField required label="Email Address" {...register("email")} fullWidth defaultValue="john@gmail.com" />
+          <TextField required label="Email Address" {...register("email")} fullWidth  />
           {errors.email && <Alert severity="error">{errors.email.message}</Alert>}
-          <TextField required label="Password" {...register("password")} type="password" fullWidth defaultValue="*********" />
+          <TextField required label="Password" {...register("password")} type="password" />
           {errors.password && <Alert severity="error">{errors.password.message}</Alert>}
-          <TextField required label="Confirm Password" {...register("confirmPassword")} type="password" fullWidth defaultValue="*********" />
+          <TextField required label="Confirm Password" {...register("confirmPassword")} type="password"  />
           {errors.confirmPassword && <Alert severity="error">{errors.confirmPassword.message}</Alert>}
-          <TextField required label="Location" {...register("location")} fullWidth defaultValue="Addis Ababa" />
+          <TextField required label="Location" {...register("location")} fullWidth />
           {errors.location && <Alert severity="error">{errors.location.message}</Alert>}
-          <TextField required label="Phone Number" {...register("phoneNumber")} fullWidth defaultValue="0911555555" />
+          <TextField required label="Phone Number" {...register("phoneNumber")} fullWidth  />
           {errors.phoneNumber&& <Alert severity="error">{errors.phoneNumber.message}</Alert>}
           <FormControlLabel control={<Checkbox {...register("agreeToTerms")} />} label="I accept the Terms and Conditions" />
           {errors.agreeToTerms && <Alert severity="error">{errors.agreeToTerms.message}</Alert>}

@@ -23,7 +23,7 @@ const userRegistration = async (req,res,next)=>{
             // console.log(result)
 
             if(result.status === 201){
-                res.status(201).json({message: 'User registered successfully.'});
+                res.status(201).json({message: 'User registered successfully.',status:201});
             } else{
                 next(errorHandler(500,'Internal Server Error'))
             }
@@ -68,7 +68,7 @@ const superAdminRegistration = async (req,res,next) =>{
         const result = await authService.getUserByEmail(email);
         // console.log("result",result)
 
-        if(result.length > 0 ){
+        if(result && result.length > 0 ){
             const [user] = result;
             let isMatch =   await bcrypt.compare(password,user.password);
             // console.log(isMatch)

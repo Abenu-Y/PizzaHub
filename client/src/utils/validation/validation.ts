@@ -1,5 +1,5 @@
 import { z, ZodType } from 'zod';
-import { adminRegisterData, formData,loginformData } from './type';
+import { adminRegisterData, formData,loginformData ,ToppingsFormData} from './type';
 
 
 export const registerSchema: ZodType<formData> = z.object({
@@ -32,3 +32,13 @@ export const registerSchema: ZodType<formData> = z.object({
     message: "Passwords do not match.",
     path: ["confirmPassword"]
   });
+
+
+
+export const  toppingsSchema:ZodType<ToppingsFormData> = z.object({
+  mozzarella: z.boolean(),
+  tomato: z.boolean(),
+  bellPeppers: z.boolean(),
+  onions: z.boolean(),
+  olives: z.boolean(),
+});

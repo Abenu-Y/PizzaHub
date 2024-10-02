@@ -131,7 +131,7 @@ const login = async(loginData) =>{
                 const token = jwt.sign({ id: user.id, restaurantId: res }, process.env.JWT_SECRET, {
                     expiresIn: '1h', 
                   });
-                response.x_access_token = token;
+                response.data = {token};
                 response.status = 200;
                 response.message ='user successfully logged in.'
                 return response;

@@ -3,14 +3,14 @@ import PizzaImg from '../../assets/image/Image.png';
 import avatarImg from '../../assets/image/Ellipse8.png';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Pizza }  from '../../utils/validation/type'
 
 type Props = {
-  name: string;
-  description: string;
-  order_status?: string;
+  pizza:Pizza,
+  order_status?:string
 };
 
-const PizzaCard = ({ name, description, order_status }: Props) => {
+const PizzaCard = ({ pizza ,order_status}: Props) => {
 
   const [path, setPath] = useState(''); 
   const [orderDetail, setOrderDetail] = useState(''); 
@@ -31,15 +31,15 @@ const PizzaCard = ({ name, description, order_status }: Props) => {
     <div className="bg-white shadow-sm p-4 w-[387px] rounded-md">
       
       {/* Image section for pizza */}
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col ">
         <div className="rounded-full bg-[#EA810033] w-[318px] h-[318px] flex justify-center items-center">
           <img src={PizzaImg} alt="Pizza Image" />
         </div>
 
         {/* Display name and description */}
-        <div className={`flex flex-col ${path === '/order' ? 'items-center' : 'items-start text-left'}`}>
-          <h2 className="text-lg font-bold">{name}</h2>
-          <p className="text-sm text-gray-600">{description}</p>
+        <div className={`flex flex-col px-2 pt-2 ${path !=='/'  ? 'items-center mx-auto' : 'items-start text-left'}`}>
+          <h2 className="text-lg font-bold text-left" >{pizza.pizza_name}</h2>
+          <p className="text-sm text-gray-600">{pizza.toppings.map(topping => topping.name).join(',')}</p>
         </div>
 
         {/* Show price and status or order button based on path */}
@@ -47,7 +47,7 @@ const PizzaCard = ({ name, description, order_status }: Props) => {
           <>
             <div className="flex flex-row items-center justify-between w-full p-4">
               <span>
-                <span className="text-[#01C550] font-bold text-2xl pr-1">150</span>
+                <span className="text-[#01C550] font-bold text-2xl pr-1">{pizza.pizza_base_price}</span>
                 <sup className="relative bottom-2 text-md">Birr</sup>
               </span>
 
@@ -57,7 +57,7 @@ const PizzaCard = ({ name, description, order_status }: Props) => {
                   {order_status}
                 </span>
               ) : (
-                <button onClick={()=>navigate('/order')} className="bg-[#FF9921] text-white font-semibold rounded-lg px-12 py-3">Order</button>
+                <button onClick={()=>navigate(`/order/${pizza.pizza_id}`)} className="bg-[#FF9921] text-white font-semibold rounded-lg px-12 py-3">Order</button>
               )}
             </div>
 
@@ -70,7 +70,7 @@ const PizzaCard = ({ name, description, order_status }: Props) => {
 
                 <div className="flex flex-row justify-between w-full p-4">
                   <Avatar alt="Azmera Pizza" src={avatarImg} />
-                  <span className="text-[1.2rem] font-semibold">{name}</span>
+                  <span className="text-[1.2rem] font-semibold">{pizza.restaurant_name}</span>
                 </div>
               </>
             )}

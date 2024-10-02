@@ -12,17 +12,17 @@ function App() {
 
   return (
     <>
-      <Router>
+      {/* <Router> */}
          <Routes>
              <Route path="/" element={<Home/>} />
              <Route path="/login" element={<AuthPage/>} />
              <Route path="/register" element={<Register/>} />
-             <Route path="/order" element={<OrderDetail />} />
-             <Route path="/order/:id" element={<OrderHistory />} />
+             <Route path="/order/:id" element={<OrderDetail />} />
+             <Route path="/order-history/:id" element={<OrderHistory />} />
              <Route path="/admin_register" element={<AdminRegistration />} />
              <Route path="/dashboard" element={<DashBoard />} />
          </Routes>
-      </Router>
+      {/* </Router> */}
     </>
   )
 }

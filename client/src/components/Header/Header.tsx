@@ -3,10 +3,13 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/image/emojione_pizza.png';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useAuth } from '../../context/authContext';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false); 
   const path = window.location.pathname; 
+  const {user }= useAuth()
+  
 
   return (
     <div>
@@ -18,7 +21,7 @@ function Header() {
         {/* Desktop Links */}
         <div className="flex justify-center flex-grow space-x-16 md:space-x-28">
           <Link to="/" className="text-xl font-semibold">Home</Link>
-          <Link to="/order" className="text-xl font-semibold">Orders</Link>
+          <Link to={`/order-history/${user?.id}`} className="text-xl font-semibold">Orders</Link>
           <Link to="/about" className="hidden text-xl font-semibold md:block">Who we are</Link>
         </div>
 

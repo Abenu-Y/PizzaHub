@@ -1,8 +1,32 @@
 import { Box} from '@mui/material';
 import PizzaCard from '../PizzaCard/PizzaCard';
-import { MockPizza } from '../../utils/data/constants'
+// import { MockPizza } from '../../utils/data/constants'
+import pizzaService from '../../services/pizza.service';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Pizza } from '../../utils/validation/type';
 
 const Fasting = () => {
+
+    const location = useLocation();
+    const [pizzainfo, setPizzaInfo] = useState<Pizza[]>([])
+    
+  console.log(pizzainfo)
+    const getAllPizza = async() =>{
+         try {
+              const response = await pizzaService.getPizzas();
+            //   console.log(response, response.data)
+              if(response.status === 200){
+                setPizzaInfo(()=>response?.data)
+              }
+         } catch (error) {
+             console.log(error);
+         }
+    }
+
+    useEffect(()=>{
+       getAllPizza();
+    },[location.state])
   
     return (
         <Box 
@@ -29,11 +53,16 @@ const Fasting = () => {
                 }}
                 className="overflow_restaurant"
             >
-                {
+                {/* {
                     MockPizza.map((pizza, index) => (
                         <PizzaCard key={index} name={pizza.name} description={pizza.description} />
                     ))
-                }
+                } */}
+                {
+                pizzainfo.map((pizza, index) => (
+                    <PizzaCard pizza={pizza} key={index} />
+                ))
+            }
             </Box>
         </Box>
     );
