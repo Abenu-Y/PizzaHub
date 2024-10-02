@@ -6,6 +6,8 @@ import OrderDetail from "./pages/Order/OrderDetail"
 import OrderHistory from "./pages/Order/OrderHistory"
 import AdminRegistration from "./components/auth/Admin/AdminRegistration"
 import DashBoard from "./pages/DashBoard/DashBoard"
+// import ErrorComponent from "./pages/NotFound/NotFound"
+import NotFound from "./pages/NotFound/NotFound"
 
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
              <Route path="/order-history/:id" element={<OrderHistory />} />
              <Route path="/admin_register" element={<AdminRegistration />} />
              <Route path="/dashboard" element={<DashBoard />} />
+             <Route path="*" element={<NotFound />} />
          </Routes>
       {/* </Router> */}
     </>

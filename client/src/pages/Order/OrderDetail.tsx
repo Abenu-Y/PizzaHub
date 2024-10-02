@@ -10,7 +10,7 @@ import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import pizzaService from "../../services/pizza.service";
 import { PizzaId,Pizza } from "../../utils/validation/type";
 import orderService from "../../services/order.service";
-import ConfirmationDialog from "../../components/Modal/ConfirmationDialog";
+// import ConfirmationDialog from "../../components/Modal/ConfirmationDialog";
 
 const defaultPizza: PizzaId = {
   pizza_base_price: 0,
