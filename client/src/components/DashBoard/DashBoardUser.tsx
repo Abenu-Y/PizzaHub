@@ -1,9 +1,12 @@
 
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { MaterialReactTable, MRT_ColumnDef, useMaterialReactTable, MRT_ToggleDensePaddingButton, MRT_ToggleFullScreenButton ,MRT_ToggleFiltersButton,MRT_ShowHideColumnsButton } from 'material-react-table';
 import { Button, Box,  Switch, TextField } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddUserModal from '../Modal/AddUserModal';
+import { useAuth } from '../../context/authContext';
+import dashboardUserService from '../../services/dashboardUser.service';
+import { useLocation } from 'react-router-dom';
 
 // Define the data type for your table
 interface User {
@@ -18,6 +21,13 @@ interface User {
 
 const DashBoardUser: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation()
+  const user = useAuth();
+  const storedInfo = localStorage.getItem('info');
+  const userInfo= storedInfo ? JSON.parse(storedInfo) : {};
+  const token = user.user?.token || userInfo?.token
+  
+ 
   
   // Handle closing the modal
   const handleClose = () => {
@@ -38,6 +48,53 @@ const DashBoardUser: React.FC = () => {
       actions: { isActive: false, id: 2 },
     },
   ]);
+
+
+  console.log(user.user?.token)
+  
+  const getUsers = async()=>{
+   
+    try {
+
+      if (!user.user?.token) {
+        console.warn('No token found. User might not be authenticated.');
+        return; // Optionally handle user not being logged in
+    }
+        
+      const response = await dashboardUserService.getUsers(token);
+      console.log(response)
+
+      if(response?.status === 200){
+         //  setData()
+         console.log(response)
+         const dataroles = response.data.map((user:any,index:number)=>{
+           return{
+             name: user.name,
+             phoneNo: user.phone,
+             email: user.email,
+             actions:{
+                isActive:!user.deleted_at,
+                id:index
+             }
+           }
+         })
+
+         setData(()=>dataroles)
+
+         console.log(dataroles)
+      }
+    } catch (error) {
+        console.log(error)
+    }
+ }
+
+
+
+
+  // console.log(rolesData)
+  useEffect(()=>{
+    getUsers();
+  },[location.state,user.user?.token])
 
   // Handle the toggle of user status
   const handleToggleActive = (id: number) => {

@@ -129,7 +129,7 @@ const login = async(loginData) =>{
             if(isMatch){
                 console.log(res)
                 const token = jwt.sign({ id: user.id, restaurantId: res }, process.env.JWT_SECRET, {
-                    expiresIn: '1h', 
+                    expiresIn: '3h', 
                   });
                 response.data = {token};
                 response.status = 200;

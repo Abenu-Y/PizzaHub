@@ -1,10 +1,35 @@
 const dbConnection = require('../config/db.config')
 
-const fetchUserData = async() =>{
+const fetchUserData = async(restaurantId) =>{
 
    try {
-    const allusers = 'SELECT name,email, phone, deleted_at FROM users WHERE deleted_at IS NULL'
-    const {rows}= await dbConnection.query(allusers)
+    const allusers = `SELECT 
+                            u.name,
+                            u.email,
+                            u.phone,
+                            u.deleted_at,
+                            COALESCE(JSON_AGG(
+                                JSON_BUILD_OBJECT(
+                                    'resource', rp.resource,  
+                                    'action', rp.action        
+                                )
+                            ) FILTER (WHERE rp.resource IS NOT NULL), '[]') AS privileges
+                    FROM 
+                        restaurant_admins ra
+                    JOIN 
+                        users u ON ra.user_id = u.id
+                    JOIN 
+                        roles r ON ra.role_id = r.id
+                    LEFT JOIN 
+                        role_permissions rp ON r.id = rp.role_id  
+                    WHERE 
+                        ra.restaurant_id = $1  
+                        AND u.deleted_at IS NULL  
+                        AND ra.deleted_at IS NULL  
+                    GROUP BY 
+                        u.name, u.email, u.phone, u.deleted_at  
+`
+    const {rows}= await dbConnection.query(allusers,[restaurantId])
     if(rows.length > 0){
         return {
             status:200,

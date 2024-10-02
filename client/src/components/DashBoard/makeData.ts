@@ -20,7 +20,7 @@ export const fakeData: User[] = [
     topping: 'Tomato, Mozzarella',
     quantity: 2,
     customerNo: 'C001',
-    createdAt: '2024-09-26T10:00:00Z',
+    createdAt: new Date('2024-09-26T10:00:00Z').toLocaleString(),
     status: 'delivered',
   },
   {
@@ -29,7 +29,7 @@ export const fakeData: User[] = [
     topping: 'Pepperoni, Mozzarella',
     quantity: 1,
     customerNo: 'C002',
-    createdAt: '2024-09-26T11:00:00Z',
+    createdAt:new Date('2024-09-26T10:00:00Z').toLocaleString(),
     status: 'ready',
   },
   {
@@ -38,7 +38,7 @@ export const fakeData: User[] = [
     topping: 'Bell Peppers, Olives',
     quantity: 3,
     customerNo: 'C003',
-    createdAt: '2024-09-26T12:00:00Z',
+    createdAt: new Date('2024-09-26T10:00:00Z').toLocaleString(),
     status: 'received',
   },
   // Add more data as needed...

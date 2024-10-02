@@ -1,5 +1,5 @@
 import { z, ZodType } from 'zod';
-import { adminRegisterData, formData,loginformData ,ToppingsFormData} from './type';
+import { adminRegisterData, formData,loginformData ,ToppingsFormData, addAdmin} from './type';
 
 
 export const registerSchema: ZodType<formData> = z.object({
@@ -41,4 +41,16 @@ export const  toppingsSchema:ZodType<ToppingsFormData> = z.object({
   bellPeppers: z.boolean(),
   onions: z.boolean(),
   olives: z.boolean(),
+});
+
+
+
+export const addAdminSchema:ZodType<addAdmin> = z.object({
+  email: z.string().nonempty("Please enter your email.").email("Invalid email format."),
+  name:z.string().nonempty("Please enter your name"),
+  phoneNumber:z.string().regex(/^(?:\+251|0)?9\d{8}$/, "Phone number must be in the format +251955273015 or 0955273015."),
+  location:z.string().nonempty(),
+  role:z.number(),
+  password: z.string().min(5, "Password must be at least 5 characters long."),
+
 });

@@ -56,3 +56,15 @@ export type PizzaId =  {
   topping_id:number;
   toppings: Topping[]; 
 }
+
+export type addAdmin = {
+   email:string,
+   name:string,
+   phoneNumber:string,
+   location:string,
+   role:number,
+   password:string
+}
+
+
+ 
