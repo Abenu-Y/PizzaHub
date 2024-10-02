@@ -27,7 +27,10 @@ const LogIn = () => {
       if(response.status === 200 && response.data.token){
         localStorage.setItem("info", JSON.stringify(response.data));
         // Redirect back to the original page (or default)
-           navigate(redirectTo, { state: { itemCount } });
+        navigate(redirectTo, { state: { itemCount } });
+        // navigate(0)
+        // window.location.reload()
+           
       }else{
         setServerError(response.message);
       }

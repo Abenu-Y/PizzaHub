@@ -13,6 +13,7 @@ const createRole = async(req,res,next) =>{
         // console.log("0",restaurantId)
 
         const response = await roleService.createRoleandGivePermission(name, permissions, restaurantId);
+        console.log("s",response)
         if(response.status ===201){
             res.status(201).json(response);
         }

@@ -4,9 +4,9 @@ const { errorHandler } = require('../services/error.service');
 const { getUserByEmail, register } = require('../services/auth.service');
 
 const fethUserData = async(req,res,next) =>{
-
+    const restaurantId = req.user.restaurantId[0].restaurant_id;
     try {
-        const response = await userService.fetchUserData();
+        const response = await userService.fetchUserData(restaurantId);
         if(response.status === 200){
              res.status(200).json(response)
         }
@@ -76,7 +76,7 @@ const addUser = async (req, res, next) => {
         const addUserResponse = await userService.addUser(data);
     
         if (addUserResponse.status === 200) {
-            return res.status(200).json({ message: 'User registered and role assigned successfully.' });
+            return res.status(200).json({ message: 'User registered and role assigned successfully.',status:201,stat:1 });
         }
     
         return next(errorHandler(500, 'Error assigning user role.'));

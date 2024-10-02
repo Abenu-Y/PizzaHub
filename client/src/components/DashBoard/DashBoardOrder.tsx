@@ -11,8 +11,8 @@ import {
   Box,
   Button,
   CircularProgress,
-  IconButton,
-  Tooltip,
+  // IconButton,
+  // Tooltip,
   Typography,
 } from '@mui/material';
 import {
@@ -22,9 +22,9 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { type User, fakeData, usStates } from './makeData';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { type User, fakeData, } from './makeData';
+// import EditIcon from '@mui/icons-material/Edit';
+// import DeleteIcon from '@mui/icons-material/Delete';
 
 const Example = () => {
   const [validationErrors, setValidationErrors] = useState<

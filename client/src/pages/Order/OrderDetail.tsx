@@ -91,7 +91,7 @@ const OrderDetail = () => {
 
   
   
-  console.log(user)
+  // console.log(user)
   const handleOrder = async (e:FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
@@ -114,7 +114,7 @@ const OrderDetail = () => {
       
 
         const response = await orderService.addOrder(orderDATA,token);
-        console.log("mn metah", response)
+        // console.log("mn metah", response)
         
         if(response){
           // alert('Order Placed Successfully')

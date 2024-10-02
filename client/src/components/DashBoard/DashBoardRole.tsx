@@ -1,10 +1,13 @@
 
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { MaterialReactTable, MRT_ColumnDef, useMaterialReactTable, MRT_ToggleDensePaddingButton, MRT_ToggleFullScreenButton ,MRT_ToggleFiltersButton,MRT_ShowHideColumnsButton } from 'material-react-table';
-import { Button, Box,  Switch } from '@mui/material';
+import { Button, Box,  Switch, } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddRoleModal from '../Modal/AddRoleModal';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
+import { useLocation } from 'react-router-dom';
+import dashboardRoleService from '../../services/dashboardRole.service';
+import { useAuth } from '../../context/authContext';
 
 // Define the data type for your table
 interface User {
@@ -18,12 +21,14 @@ interface User {
 
 const DashBoardRole: React.FC = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation()
+  const [rolesData, setRolesData] = useState<User[]>([])
+  const user = useAuth();
+  const storedInfo = localStorage.getItem('info');
+  const userInfo= storedInfo ? JSON.parse(storedInfo) : {};
+  const token = user.user?.token || userInfo?.token
+  console.log(user)
   
-  // Handle closing the modal
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const [data, setData] = useState<User[]>([
     {
       role_name: 'Kitchen Manager',
@@ -38,9 +43,51 @@ const DashBoardRole: React.FC = () => {
     {
       role_name: 'Branch Manager',
       created_at: '8/14/24',
-      actions: { isActive: false, id: 2 },
+      actions: { isActive: false, id: 3 },
     },
   ]);
+
+  const fetchRoles = async()=>{
+     try {
+         
+       const response = await dashboardRoleService.fetchRoles(token);
+       console.log(response)
+
+       if(response?.status === 200){
+          //  setData()
+          console.log(response)
+          const dataroles = response.data.map((role:any,index:number)=>{
+            return{
+              role_name: role.name,
+              created_at:new Date(role.created_at).toLocaleString(),
+              actions:{
+                 isActive:!role.deleted_at,
+                 id:index
+              }
+            }
+          })
+
+          setRolesData(dataroles)
+          setData(dataroles)
+
+          console.log(dataroles)
+       }
+     } catch (error) {
+         console.log(error)
+     }
+  }
+
+
+  console.log(rolesData)
+  useEffect(()=>{
+    fetchRoles();
+  },[location.state])
+  
+  // Handle closing the modal
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   // Handle the toggle of user status
   const handleToggleActive = (id: number) => {

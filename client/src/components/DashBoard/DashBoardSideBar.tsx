@@ -4,7 +4,7 @@ import {
   MenuOpen as MenuIcon,
   Login as ExitToAppIcon
 } from '@mui/icons-material';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import sidebarPizzaImg from '../../assets/image/emojisidebar.png'
 import orderIcon from '../../assets/icon/order.png'
 import profileIcon from '../../assets/icon/profile.png'
@@ -14,6 +14,7 @@ import roleIcon from '../../assets/icon/profile1.png'
 const DashBoardSideBar = () => {
   const location = useLocation();
   const [tab, setTab] = useState('');
+  const navigate = useNavigate()
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -24,6 +25,13 @@ const DashBoardSideBar = () => {
       setTab('orders'); // Default to "Orders" if no tab is provided
     }
   }, [location.search]);
+
+
+  const handleLogOut = () =>{
+    localStorage.removeItem('info')
+    navigate('/')
+    window.location.reload()
+  }
 
   return (
     <Drawer
@@ -131,7 +139,7 @@ const DashBoardSideBar = () => {
 
         {/* Sign Out Button */}
         <ListItemButton
-          onClick={() => console.log('Sign Out')}
+          onClick={handleLogOut}
           sx={{ textDecoration: 'none', color: 'inherit' }}
         >
           <ListItemIcon>
