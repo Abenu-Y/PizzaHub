@@ -43,11 +43,11 @@ const AddUserModal: React.FC<CustomDialogProps> = ({ open, onClose }) => {
     }
         
       const response = await dashboardRoleService.fetchRoles(token);
-      console.log(response)
+      // console.log(response)
 
       if(response?.status === 200){
          //  setData()
-         console.log(response)
+        //  console.log(response)
          const dataroles = response.data.map((role:any,index:number)=>{
            return{
              roleId: role.role_id,
@@ -57,7 +57,7 @@ const AddUserModal: React.FC<CustomDialogProps> = ({ open, onClose }) => {
 
          setRole(()=>dataroles)
 
-         console.log(dataroles)
+        //  console.log(dataroles)
       }
     } catch (error) {
         console.log(error)
@@ -66,14 +66,14 @@ const AddUserModal: React.FC<CustomDialogProps> = ({ open, onClose }) => {
 
 
  const { register, handleSubmit, watch,formState: { errors } } = useForm<addAdmin>({ resolver: zodResolver(addAdminSchema) });
- console.log(role)
+//  console.log(role)
  const watchedValues = watch()
 
  const handleAddADMIN = async(data:addAdmin):Promise<any> =>{
-      console.log(data,token)  
+      // console.log(data,token)  
       try {
             const response = await dashboardUserService.addUser(data, token);
-            console.log(response)
+            // console.log(response)
             if(response?.status === 200 ){
               SetIsUserAdded(true)
               setTimeout(()=>window.location.reload(), 3000)

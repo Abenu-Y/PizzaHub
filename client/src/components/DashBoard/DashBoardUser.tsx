@@ -66,7 +66,7 @@ const DashBoardUser: React.FC = () => {
 
       if(response?.status === 200){
          //  setData()
-        //  console.log(response)
+         console.log(response)
          const dataroles = response.data.map((user:any,index:number)=>{
            return{
              name: user.name,
@@ -81,7 +81,7 @@ const DashBoardUser: React.FC = () => {
 
          setData(()=>dataroles)
 
-         console.log(dataroles)
+        //  console.log(dataroles)
       }
     } catch (error) {
         console.log(error)
@@ -91,7 +91,7 @@ const DashBoardUser: React.FC = () => {
 
 
 
-  // console.log(rolesData)
+  console.log(data)
   useEffect(()=>{
     getUsers();
   },[location.state,user.user?.token])

@@ -93,3 +93,18 @@ export interface User {
   };
   role:Role[];
 }
+
+export interface Toppings{
+  name:string,
+  price: number
+}
+
+
+export interface addMenu {
+  pizza:{
+    name:string,
+    restaurant_id:number | undefined,
+    base_price:number
+  },
+  toppings:Toppings[]
+}

@@ -2,18 +2,47 @@
 
 const dbConnection = require('../config/db.config')
 
+const checkDuplicatePizzaName =async(pizzaName) =>{
+
+    const query = `SELECT * FROM pizzas WHERE name = $1`
+
+    try {
+        const response = await dbConnection.query(query,[pizzaName])
+        if(response.rows.length > 0){
+            return true
+        } else{
+            return false
+        }
+        
+    } catch (error) {
+        return {
+            status: false,
+            message: 'Error checking duplicate pizza name',
+            error: error
+        
+        }
+    }
+}
+
 const addMenu = async (pizzaInfo) => {
     const { pizza, toppings } = pizzaInfo;
 
     const insertPizzaQuery = ` INSERT INTO pizzas (name, restaurant_id, base_price)  VALUES ($1, $2, $3)  RETURNING id`;
     
-    const insertToppingQuery = ` INSERT INTO toppings (name, price)  VALUES ($1, $2) ON CONFLICT (name) DO NOTHING RETURNING id`;
+    const insertToppingQuery = ` INSERT INTO toppings (name, price)  VALUES ($1, $2) RETURNING id`;
     
     const insertPizzaToppingQuery = ` INSERT INTO pizza_toppings (pizza_id, topping_id) VALUES ($1, $2)`;
 
     let response = {};  
     try {
         // Insert the pizza and get its ID
+        const check = await checkDuplicatePizzaName(pizza.name)
+        if(check){
+            return {
+                status: 400,
+                message: 'Pizza name already exists',
+            }
+        }
         const pizzaResult = await dbConnection.query(insertPizzaQuery, [ pizza.name, pizza.restaurant_id,
             pizza.base_price
         ]);

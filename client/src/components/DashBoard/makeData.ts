@@ -5,7 +5,8 @@
 export type User = {
   id: string;           // Assuming you still want an ID
   name: string;        // For Name
-  topping: string;     // For Topping
+  // topping: string;     // For Topping
+  isActive:boolean,
   quantity: number;    // For Quantity
   customerNo: string;  // For Customer No
   createdAt: string;   // For Created at (you can use Date object or ISO string)
@@ -17,7 +18,8 @@ export const fakeData: User[] = [
   {
     id: '1',
     name: 'Margherita',
-    topping: 'Tomato, Mozzarella',
+    // topping: 'Tomato, Mozzarella',
+    isActive:false,
     quantity: 2,
     customerNo: 'C001',
     createdAt: new Date('2024-09-26T10:00:00Z').toLocaleString(),
@@ -26,7 +28,8 @@ export const fakeData: User[] = [
   {
     id: '2',
     name: 'Pepperoni',
-    topping: 'Pepperoni, Mozzarella',
+    // topping: 'Pepperoni, Mozzarella',
+    isActive:true,
     quantity: 1,
     customerNo: 'C002',
     createdAt:new Date('2024-09-26T10:00:00Z').toLocaleString(),
@@ -35,7 +38,8 @@ export const fakeData: User[] = [
   {
     id: '3',
     name: 'Veggie',
-    topping: 'Bell Peppers, Olives',
+    // topping: 'Bell Peppers, Olives',
+    isActive:true,
     quantity: 3,
     customerNo: 'C003',
     createdAt: new Date('2024-09-26T10:00:00Z').toLocaleString(),

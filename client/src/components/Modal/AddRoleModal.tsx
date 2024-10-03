@@ -37,7 +37,7 @@ const AddRoleModal: React.FC<CustomDialogProps> = ({ open, onClose }) => {
 
     try {
       const response = await dashboardRoleService.addRoles(roleData, token);
-      console.log(response);
+      // console.log(response);
       if (response?.status === 200 || response?.status === 201) {
         setIsRoleAdded(true);
         setTimeout(() => window.location.reload(), 3000);

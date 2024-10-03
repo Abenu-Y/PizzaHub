@@ -11,6 +11,7 @@ import {
   Box,
   Button,
   CircularProgress,
+  Switch,
   // IconButton,
   // Tooltip,
   Typography,
@@ -63,22 +64,35 @@ const Example = () => {
   {
     accessorKey: 'topping',
     header: 'Topping',
-    muiEditTextFieldProps: ({ cell, row }) => ({
-      type: 'text',
-      required: true,
-      error: !!validationErrors?.[cell.id],
-      helperText: validationErrors?.[cell.id],
-      onBlur: (event) => {
-        const validationError = !validateRequired(event.currentTarget.value)
-          ? 'Required'
-          : undefined;
-        setValidationErrors({
-          ...validationErrors,
-          [cell.id]: validationError,
-        });
-        setEditedUsers({ ...editedUsers, [row.id]: row.original });
-      },
-    }),
+    Cell: ({ cell }) => {
+      const { isActive, id } = cell.getValue() as { isActive: boolean; id: number };
+      return (
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div className='px-4 py-2 mx-2 bg-green-100 rounded-full'>
+              <span>Active</span>
+              <Switch checked={isActive} size='small' color="success"
+                // onChange={() => handleToggleActive(id)}
+              />
+          </div>
+        </div>
+      );
+    },
+    // muiEditTextFieldProps: ({ cell, row }) => ({
+    //   type: 'text',
+    //   required: true,
+    //   error: !!validationErrors?.[cell.id],
+    //   helperText: validationErrors?.[cell.id],
+    //   onBlur: (event) => {
+    //     const validationError = !validateRequired(event.currentTarget.value)
+    //       ? 'Required'
+    //       : undefined;
+    //     setValidationErrors({
+    //       ...validationErrors,
+    //       [cell.id]: validationError,
+    //     });
+    //     setEditedUsers({ ...editedUsers, [row.id]: row.original });
+    //   },
+    // }),
   },
   {
     accessorKey: 'quantity',
@@ -205,6 +219,15 @@ const Example = () => {
     createDisplayMode: 'row', // ('modal', and 'custom' are also available)
     editDisplayMode: 'table', // ('modal', 'row', 'cell', and 'custom' are also
     enableEditing: true,
+    enableFilters:true,
+    enableColumnActions:false,
+    enableBottomToolbar:false,
+    enableSorting:false,
+    enableColumnFilters:false,
+    enableFilterMatchHighlighting:false,
+    muiTableHeadCellProps: {
+      sx: { backgroundColor: '#F6F6F6',paddingBlock:"15px"},
+    },
     // enableRowActions: true,
     // positionActionsColumn: 'last',
     getRowId: (row) => row.id,
