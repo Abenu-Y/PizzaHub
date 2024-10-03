@@ -31,10 +31,11 @@ const LogIn = () => {
         // navigate(0)
         // window.location.reload()
            
-      }else{
+      }else if (response.success === false || response.status === 400 ) {
         setServerError(response.message);
       }
     } catch (error) {
+      console.log("k")
         setServerError(()=>'Internal Server Error')
     }
   };
@@ -50,16 +51,19 @@ const LogIn = () => {
             <img src={pizzaImg1} alt="" />
             <span className='text-[#AF5901] text-[20px] font-medium'>Pizza</span>
           </div>
+           
           <div className='max-h-[73px] py-[16px]'>
+            
             <div className='text-[24px]'>Login</div>
-            {
-              serverError && <div className='text-red-500'>{serverError}</div>
-            }
+           
             <List sx={{ width: '100%', maxWidth: 552, bgcolor: 'background.paper' }} aria-label="mailbox folders">
               <Divider component="li" />
             </List>
+            {
+              serverError && <div className='text-red-500'>{serverError}</div>
+            }
           </div>
-          <div>
+          <div className='mt-4'>
             <TextField
               required
               type='email'

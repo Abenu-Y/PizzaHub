@@ -11,7 +11,7 @@ const FooterNavigationBar = () => {
         <div className="flex flex-col justify-center gap-8 font-semibold md:flex-row">
           <Link to="/">Home</Link>
           <Link to="/order">Order</Link>
-          <Link to="/about_us">About Us</Link>
+          <Link to="/about">About Us</Link>
         </div>
 
         <div className="relative flex flex-col items-center justify-center">

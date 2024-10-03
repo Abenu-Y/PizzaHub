@@ -12,7 +12,17 @@ const logIn = async (loginformData: FormData): Promise<any> => {
     try {
        
         response = await axios.post(`${api_url}/api/auth/signin`, loginformData);
+        if(response.status === 400){
+              return {
+                 status : 400,
+                 message:"Invalid Credential"
+              }
+        }
     } catch (error) {
+        return {
+            status : 400,
+            message:"Invalid Credential"
+         }
         console.error('Login error:', error); // Log the error for debugging
         throw error; // Optionally re-throw the error to handle it outside this function
     }

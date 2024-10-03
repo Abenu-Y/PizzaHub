@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 function authenticateJWT(req, res, next) {
   const token = req.headers.authorization && req.headers.authorization.split(' ')[0];
-  console.log(token,"tok...............")
+  // console.log(token,"tok...............")
 
   if (!token) {
     return res.status(401).send({
@@ -19,7 +19,7 @@ function authenticateJWT(req, res, next) {
           }); 
     }
     req.user = user; 
-    console.log("is",user)// Attach the user object to the request
+    // console.log("is",user)// Attach the user object to the request
     next();
   });
 }

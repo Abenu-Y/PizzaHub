@@ -7,7 +7,7 @@ const fetchUserData = async(restaurantId) =>{
                             u.name,
                             u.email,
                             u.phone,
-                            u.deleted_at,
+                            ra.deleted_at,
                             COALESCE(JSON_AGG(
                                 JSON_BUILD_OBJECT(
                                     'resource', rp.resource,  
@@ -25,9 +25,8 @@ const fetchUserData = async(restaurantId) =>{
                     WHERE 
                         ra.restaurant_id = $1  
                         AND u.deleted_at IS NULL  
-                        AND ra.deleted_at IS NULL  
                     GROUP BY 
-                        u.name, u.email, u.phone, u.deleted_at  
+                        u.name, u.email, u.phone, ra.deleted_at  
 `
     const {rows}= await dbConnection.query(allusers,[restaurantId])
     if(rows.length > 0){

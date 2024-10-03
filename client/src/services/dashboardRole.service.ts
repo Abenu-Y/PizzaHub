@@ -2,7 +2,7 @@
 
 const api_url = import.meta.env.VITE_API_URL;
 import axios from 'axios';
-import { addAdmin } from '../utils/validation/type';
+import { addRole } from '../utils/validation/type';
 
 
 const fetchRoles = async(token:any) =>{
@@ -24,15 +24,15 @@ const fetchRoles = async(token:any) =>{
 }
 
 
-const addRole = async(data:addAdmin, token:any)=>{
+const addRoles = async(data:addRole, token:any)=>{
     try {
-        const response = await axios.post(`${api_url}/api/user/add-user`,data, {
+        const response = await axios.post(`${api_url}/api/role/create-role`,data, {
             headers:{
                 Authorization:token
             }
         })
-        if(response.status === 200){
-            return response.data
+        if(response.status === 200 || response.status === 201){
+            return response
         } else{
             // return response
             return null
@@ -44,4 +44,4 @@ const addRole = async(data:addAdmin, token:any)=>{
 
 
 
-export default { fetchRoles, addRole}
+export default { fetchRoles, addRoles}

@@ -99,51 +99,32 @@ const getRoles = async(restaurantId) =>{
   let response ={};
   try {
 
-    // const getRolesResponse = `SELECT 
-    //                               roles.name, 
-    //                               roles.created_at, 
-    //                               role_permissions.resource, 
-    //                               role_permissions.action 
-    //                           FROM 
-    //                               restaurant_admins 
-    //                           JOIN 
-    //                               roles ON restaurant_admins.role_id = roles.id 
-    //                           JOIN 
-    //                               role_permissions ON roles.id = role_permissions.role_id 
-    //                           WHERE 
-    //                               restaurant_admins.restaurant_id = $1  
-    //                               AND restaurant_admins.deleted_at IS NULL  
-    //                               AND roles.deleted_at IS NULL
-    //                      `
-
-
     const getRolesResponse = `SELECT 
-                                  roles.name,
-                                  roles.created_at,
-                                  roles.id AS role_id,
-                                  roles.deleted_at,
-                                  COALESCE(JSON_AGG(
-                                      JSON_BUILD_OBJECT(
+                                  roles.name,                      
+                                  roles.created_at,                
+                                  roles.id AS role_id,             
+                                  COALESCE(JSON_AGG(              
+                                      JSON_BUILD_OBJECT(          
                                           'resource', role_permissions.resource,
                                           'action', role_permissions.action
                                       )
-                                  ) FILTER (WHERE role_permissions.resource IS NOT NULL), '[]') AS role
-                            FROM 
-                                restaurant_admins 
-                            JOIN 
-                                roles ON restaurant_admins.role_id = roles.id 
-                            LEFT JOIN 
-                                role_permissions ON roles.id = role_permissions.role_id 
-                            WHERE 
-                                restaurant_admins.restaurant_id = $1  -- Use the correct placeholder here
-                                AND restaurant_admins.deleted_at IS NULL  
-                            GROUP BY 
-                                roles.name, roles.created_at, roles.id, roles.deleted_at
-                            ORDER BY 
-                                roles.created_at`
-    //  console.log(getRolesResponse)                    
+                                  ) FILTER (WHERE role_permissions.resource IS NOT NULL), '[]') AS role  
+                              FROM 
+                                  roles
+                              JOIN 
+                                  role_permissions 
+                              ON 
+                                  roles.id = role_permissions.role_id  
+                              WHERE     
+                                  role_permissions.restaurant_id = $1     
+                              GROUP BY 
+                                  roles.name, roles.created_at, roles.id, roles.deleted_at  
+                              ORDER BY 
+                                  roles.created_at                   
+                            `       
 
     const {rows} =  await dbConnection.query(getRolesResponse,[restaurantId])
+    console.log(rows)
     if(rows.length > 0){
       response.status = 200;
       response.data = rows;

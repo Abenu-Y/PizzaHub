@@ -8,6 +8,7 @@ import AdminRegistration from "./components/auth/Admin/AdminRegistration"
 import DashBoard from "./pages/DashBoard/DashBoard"
 // import ErrorComponent from "./pages/NotFound/NotFound"
 import NotFound from "./pages/NotFound/NotFound"
+import AboutUs from "./components/about/About"
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       {/* <Router> */}
          <Routes>
              <Route path="/" element={<Home/>} />
+             <Route path="/about" element={<AboutUs/>} />
              <Route path="/login" element={<AuthPage/>} />
              <Route path="/register" element={<Register/>} />
              <Route path="/order/:id" element={<OrderDetail />} />

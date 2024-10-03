@@ -67,7 +67,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         
         setEmployee(userWithRoles);
         setUser(userWithRoles);
-        console.log(employee)
+        // console.log(employee)
       }
     };
 

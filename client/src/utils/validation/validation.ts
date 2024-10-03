@@ -1,5 +1,5 @@
 import { z, ZodType } from 'zod';
-import { adminRegisterData, formData,loginformData ,ToppingsFormData, addAdmin} from './type';
+import { adminRegisterData, formData,loginformData ,ToppingsFormData, addAdmin, addRole} from './type';
 
 
 export const registerSchema: ZodType<formData> = z.object({
@@ -54,3 +54,12 @@ export const addAdminSchema:ZodType<addAdmin> = z.object({
   password: z.string().min(5, "Password must be at least 5 characters long."),
 
 });
+
+
+export const permissionSchema = z.object({
+  resource: z.string(),
+  action: z.string()
+});
+
+
+

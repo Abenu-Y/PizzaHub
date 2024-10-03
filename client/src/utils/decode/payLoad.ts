@@ -19,11 +19,11 @@ interface User {
 const getAuth = async (): Promise<User | {}> => {
     const storedData = localStorage.getItem('info');
     const parsedData = storedData ? JSON.parse(storedData) : null; // Get and parse the stored data
-    console.log("pasr",parsedData)
-console.log("stored data",storedData,)
+    // console.log("pasr",parsedData)
+// console.log("stored data",storedData,)
     if (parsedData) {
         const decodedToken = await decodeTokenPayload(parsedData.token); // Decode the token
-        console.log(decodedToken)
+        // console.log(decodedToken)
         decodedToken.token = parsedData.token;
         // Assuming decodedToken matches the User interface
         return decodedToken as User; // Return the decoded user info

@@ -66,5 +66,30 @@ export type addAdmin = {
    password:string
 }
 
+export type permissions ={
+  resource:string,
+  action:string
+}
 
- 
+ export type addRole = {
+  name:string,
+  permissions:permissions[],
+  restaurantId:number
+ }
+
+
+export interface Role {
+  resource:string;
+  action:string;
+}
+
+
+export interface User {
+  role_name: string;
+  created_at: string;
+  actions: {
+    isActive: boolean;
+    id: number; 
+  };
+  role:Role[];
+}

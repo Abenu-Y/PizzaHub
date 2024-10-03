@@ -47,7 +47,7 @@ const login = async (req,res,next) =>{
         if(response.status === 200){
             res.status(200).json(response);
         } else{
-            next(errorHandler(401,'Invalid credentials'))
+            return next(errorHandler(400,'Invalid credentials'))
         }
     } catch (error) {
         next(error)

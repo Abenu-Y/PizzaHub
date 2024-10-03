@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/image/emojione_pizza.png';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useAuth } from '../../context/authContext';
@@ -8,8 +8,15 @@ import { useAuth } from '../../context/authContext';
 function Header() {
   const [isOpen, setIsOpen] = useState(false); 
   const path = window.location.pathname; 
+  const navigate = useNavigate()
   const user = useAuth()
   console.log(user)
+
+  const handleLogOut = () =>{
+    localStorage.removeItem('info')
+    navigate('/')
+    window.location.reload()
+  }
   
 
   return (
@@ -23,7 +30,7 @@ function Header() {
         <div className="flex justify-center flex-grow space-x-16 md:space-x-28">
           <Link to="/" className="text-xl font-semibold">Home</Link>
           <Link to={`/order-history/${user.user?.id}`} className="text-xl font-semibold">Orders</Link>
-          <Link to="/about" className="hidden text-xl font-semibold md:block">Who we are</Link>
+          <Link to="/about" className="hidden text-xl font-semibold md:block">About</Link>
         </div>
 
         {/* Register Button (visible only on the home page) */}
@@ -35,9 +42,15 @@ function Header() {
                 DashBoard
               </Link>
             ) : (
-              <Link to="/register" className="bg-[#FF9921] flex items-center justify-center text-2xl text-white rounded-lg py-2 px-8 font-semibold">
-                Register
-              </Link>
+               !user.isLogged ? (
+                <Link to="/register" className="bg-[#FF9921] flex items-center justify-center text-2xl text-white  rounded-lg py-2 px-8 font-semibold">
+                      Register
+                 </Link>
+               ):(
+                  <button className='bg-[#FF9921] rounded-lg px-8 py-2 text-white' onClick={handleLogOut}>
+                      Log Out
+                  </button>
+               )
             )
           )}
 

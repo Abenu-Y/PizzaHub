@@ -1,7 +1,7 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
 import { MaterialReactTable, MRT_ColumnDef, useMaterialReactTable, MRT_ToggleDensePaddingButton, MRT_ToggleFullScreenButton ,MRT_ToggleFiltersButton,MRT_ShowHideColumnsButton } from 'material-react-table';
-import { Button, Box,  Switch, TextField } from '@mui/material';
+import { Button, Box,  Switch } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddUserModal from '../Modal/AddUserModal';
 import { useAuth } from '../../context/authContext';
@@ -50,7 +50,7 @@ const DashBoardUser: React.FC = () => {
   ]);
 
 
-  console.log(user.user?.token)
+  // console.log(user.user?.token)
   
   const getUsers = async()=>{
    
@@ -62,11 +62,11 @@ const DashBoardUser: React.FC = () => {
     }
         
       const response = await dashboardUserService.getUsers(token);
-      console.log(response)
+      // console.log(response)
 
       if(response?.status === 200){
          //  setData()
-         console.log(response)
+        //  console.log(response)
          const dataroles = response.data.map((user:any,index:number)=>{
            return{
              name: user.name,
@@ -133,12 +133,12 @@ const DashBoardUser: React.FC = () => {
         const { isActive, id } = cell.getValue() as { isActive: boolean; id: number };
         return (
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            active
-            <Switch
-              checked={isActive}
-              onChange={() => handleToggleActive(id)}
-              color="primary"
-            />
+            <div className='px-4 py-2 mx-2 bg-green-100 rounded-full'>
+                <span>Active</span>
+                <Switch checked={isActive} size='small' color="success"
+                  onChange={() => handleToggleActive(id)}
+                />
+            </div>
             <Button onClick={() => handleDeleteUser(id)} color="error" size="small">
               <DeleteIcon fontSize="small" />
             </Button>
@@ -153,7 +153,9 @@ const DashBoardUser: React.FC = () => {
     columns,
     data,
     // enableRowSelection: true,
- 
+    muiTableHeadCellProps: {
+      sx: { backgroundColor: '#F6F6F6',paddingBlock:"15px"},
+    },
     enableBottomToolbar:false,
     enableSorting:false,
     enableFilters:true,
@@ -192,7 +194,7 @@ const DashBoardUser: React.FC = () => {
 
   return (
     <>
-            <MaterialReactTable table={table} />)
+            <MaterialReactTable table={table} />
             <AddUserModal open={open}  onClose={handleClose} />
     </>
     );

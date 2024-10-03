@@ -4,7 +4,7 @@ const roleService =require('../services/role.service');
 const createRole = async(req,res,next) =>{
     try {
         const {name,permissions,restaurantId} = req.body;
-        // console.log(name,permissions,restaurantId)
+        console.log("gagagbtatas",name,permissions,restaurantId)
         if(!name || !permissions || !restaurantId){
             next(errorHandler(400,  'Missing required fields'));
         }
@@ -34,7 +34,7 @@ const getRoles  = async(req,res,next) =>{
     try {
          const response = await roleService.getRoles(restaurantId)
          if(response.status !== 200){
-            next(errorHandler(400,'rror fetching role and inserting permissions'))
+            return next(errorHandler(400,'rror fetching role and inserting permissions'))
          }
 
          return res.status(200).json(response);
@@ -51,6 +51,7 @@ const dropRoles = async(req,res,next) =>{
 
         const { roleId ,restaurantId } = req.body;
         const response = await roleService.dropRoles(restaurantId,roleId);
+        console.log(response)
 
         if(response?.status !== 200){
               return next(errorHandler(400,'This roles doesnot exist.'))

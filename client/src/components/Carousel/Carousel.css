@@ -3,7 +3,7 @@
 .carousel-container {
     max-width: 1440px;
     overflow: hidden;
-    margin: auto; /* Center the carousel */
+    margin: auto; 
     position: relative;
 }
 
@@ -14,32 +14,54 @@
 }
 
 .carousel-item {
-    min-width: 100%; /* Each item takes the full width */
+    min-width: 100%;
     box-sizing: border-box;
-    height: 386px; /* Adjust height as needed */
+    height: 386px; 
     display: flex;
     justify-content: center;
-    object-fit:contain;
+    object-fit: contain;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 20px !important;
 }
 
 .carousel-pagination {
     display: flex;
     justify-content: center;
     border-radius: 15px;
+    margin-top: 10px; /* Add spacing for pagination */
 }
 
 .dot {
     height: 20px;
     width: 20px;
     margin: 0 5px;
-    background-color: #bbb; /* Default color */
+    background-color: #bbb; 
     border-radius: 50%;
     display: inline-block;
     cursor: pointer;
 }
 
 .dot.active {
-    background-color: orange; /* Active color */
+    background-color: orange; 
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .carousel-inner {
+        height: 300px;
+    }
+
+    .carousel-item {
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-inner {
+        height: 250px; /* Further reduced height for smaller screens */
+    }
+
+    .carousel-item {
+        height: 180px; /* Further reduced height for smaller screens */
+    }
 }

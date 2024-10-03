@@ -29,7 +29,7 @@ const DashBoardSideBar = () => {
 
   const handleLogOut = () =>{
     localStorage.removeItem('info')
-    navigate('/')
+    navigate('/login')
     window.location.reload()
   }
 
