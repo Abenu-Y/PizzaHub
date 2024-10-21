@@ -195,54 +195,10 @@ The Pizza Ordering Service is a full-stack web application that enables users to
                 }
             ]
         },
-        {
-            "pizza_id": 4,
-            "pizza_name": "Hawaiian",
-            "pizza_base_price": "12.99",
-            "restaurant_id": 1,
-            "restaurant_name": "Delight02",
-            "toppings": [
-                {
-                    "name": "Tomata",
-                    "price": 1.5
-                },
-                {
-                    "name": "Mozzorella",
-                    "price": 1.5
-                },
-                {
-                    "name": "Pineapple",
-                    "price": 1
-                },
-                {
-                    "name": "Ham",
-                    "price": 0
-                }
-            ]
-        },
-        {
-            "pizza_id": 15,
-            "pizza_name": "Margherita",
-            "pizza_base_price": "10.00",
-            "restaurant_id": 3,
-            "restaurant_name": "Delight002",
-            "toppings": [
-                {
-                    "name": "Tomato",
-                    "price": 0.5
-                },
-                {
-                    "name": "Basil",
-                    "price": 0.75
-                },
-                {
-                    "name": "Oregano",
-                    "price": 0.25
-                }
-            ]
+         //  other menus
         }
-        }   
-  
+        
+      
   
 
 - GET /api/menu/single/:id  
@@ -274,7 +230,7 @@ The Pizza Ordering Service is a full-stack web application that enables users to
         }
     ]
   }
-   ```
+  ```
    
 
 
@@ -322,7 +278,7 @@ The Pizza Ordering Service is a full-stack web application that enables users to
             "id": 4,
             "customer_id": 1,
             "restaurant_id": 1,
-            "status": "Pending",
+            "status": "Delivered",
             "total_price": "34.99",
             "created_at": "2024-10-02T11:59:52.547Z",
             "deleted_at": null
