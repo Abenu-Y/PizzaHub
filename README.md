@@ -8,7 +8,7 @@ The Pizza Ordering Service is a full-stack web application that enables users to
 
 
 
-![Pizza Ordering Overview](./client/public/readme/first.jpg) <!-- Add image for project overview -->
+![Pizza Ordering Overview](./client/src/assets/readme/first.jpg) <!-- Add image for project overview -->
 
 ## Features
 
@@ -30,7 +30,7 @@ The Pizza Ordering Service is a full-stack web application that enables users to
 - Role Management: 
   - Internal user roles with customizable permissions for restaurant staff.
 
-  ![Role Management](./client/public/readme/second.png) <!-- Add image for role management -->
+  ![Role Management](./client/src/assets/readme/second.png) <!-- Add image for role management -->
 
 ## Tech Stack
 
