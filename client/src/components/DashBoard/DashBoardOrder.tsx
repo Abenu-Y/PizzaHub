@@ -3,7 +3,7 @@ import {
   MaterialReactTable,
   // createRow,
   type MRT_ColumnDef,
-  type MRT_Row,
+  // type MRT_Row,
   type MRT_TableOptions,
   useMaterialReactTable,
 } from 'material-react-table';
@@ -183,6 +183,7 @@ const Example = () => {
   //call DELETE hook
   const { mutateAsync: deleteUser, isPending: isDeletingUser } =
     useDeleteUser();
+    console.log(deleteUser)
 
   //CREATE action
   const handleCreateUser: MRT_TableOptions<User>['onCreatingRowSave'] = async ({
@@ -338,6 +339,35 @@ function useGetUsers() {
     refetchOnWindowFocus: false,
   });
 }
+
+//validate user 
+const validateUser = (values: User) => {
+  const errors: Record<string, string | undefined> = {};
+
+  if (!values.name) {
+    errors.name = 'Name is required';
+  }
+  if (!values.isActive) {
+    errors.topping = 'Topping is required';
+  }
+  if (values.quantity === undefined || values.quantity <= 0) {
+    errors.quantity = 'Quantity must be greater than 0';
+  }
+  if (!values.customerNo) {
+    errors.customerNo = 'Customer No is required';
+  }
+  if (!values.createdAt) {
+    errors.createdAt = 'Created At is required';
+  }
+  if (!values.status) {
+    errors.status = 'Status is required';
+  }
+
+  return errors;
+};
+
+// Example component code continues here...
+
 
 //UPDATE hook (put user in api)
 function useUpdateUsers() {
