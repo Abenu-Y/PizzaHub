@@ -234,7 +234,7 @@ The Pizza Ordering Service is a full-stack web application that enables users to
    
 
 
- <span style="color: yellow;">**Response:**</span>
+   <span style="color: yellow;">**Response:**</span>
  ```json
   {
     "status": 200,
@@ -251,7 +251,7 @@ The Pizza Ordering Service is a full-stack web application that enables users to
         GET http://localhost:3000/api/order/get-order
   ```
 
-  <span style="color: yellow;">**Response:**</span>
+   <span style="color: yellow;">**Response:**</span>
   ```json
   {
     "status": 200,
@@ -284,6 +284,7 @@ The Pizza Ordering Service is a full-stack web application that enables users to
             "deleted_at": null
         },
   }
+  ```
   
 - PUT /api/order/status/:id  
   Update the status of an order (protected, requires role authorization: update).
