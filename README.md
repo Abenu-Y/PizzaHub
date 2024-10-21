@@ -59,7 +59,7 @@ The Pizza Ordering Service is a full-stack web application that enables users to
 - POST /api/auth/register  
   Register a new customer or restaurant manager.  
   <span style="color: yellow;">Request:</span>  
-  http 
+  ```http 
   POST http://localhost:3000/api/auth/register
   Content-Type: application/json
 
@@ -69,10 +69,10 @@ The Pizza Ordering Service is a full-stack web application that enables users to
     "location":"dilla",
     "phoneNumber":"0972685212"
   }
-  
+  ```
 
   <span style="color: green;">Response:</span>
-  
+  ```json
    {
     "message": "User registered successfully.",
     "status": 201
@@ -84,7 +84,7 @@ The Pizza Ordering Service is a full-stack web application that enables users to
 - POST /api/auth/signin  
   Log in and retrieve a JWT token.
   <span style="color: yellow;">Request:</span>
-  http  
+  ```http  
   POST http:localhost:5173/api/auth/signin
   Content-Type: application/json
 
@@ -92,9 +92,10 @@ The Pizza Ordering Service is a full-stack web application that enables users to
     "email":"abeneyoseph@pizza.com",
     "password":"abenez",
   }
-  
+  ```
 
   <span style="color: yellow;">Response:</span>
+  ```json
     {
     "data": {
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicmVzdGF1cmFudElkIjpbeyJ1c2VyX2lkIjoxLCJyb2xlX2lkIjoxLCJyZXN0YXVyYW50X2lkIjoxLCJkZWxldGVkX2F0IjpudWxsfV0sImlhdCI6MTcyOTUyMTI0OCwiZXhwIjoxNzI5NTMyMDQ4fQ.j9BnPsUIXI-MYIrnt1oLAqKpk9tAGm0M-J0iT1pLxpA"
@@ -106,7 +107,7 @@ The Pizza Ordering Service is a full-stack web application that enables users to
 
 - **POST** `/api/auth/super_admin_register`  
   Register a super admin for the restaurant (protected, JWT required).
-    <span style="color: yellow;">**Request:**</span>
+  <span style="color: yellow;">**Request:**</span>
   ```http  
   POST http://localhost:5173/api/auth/super_admin_register
   Content-Type: application/json
@@ -120,11 +121,12 @@ The Pizza Ordering Service is a full-stack web application that enables users to
     "phoneNumber":"0972685212"
   }
 
-
+  ```
   <span style="color: yellow;">Response:</span>
+  ```json
     {
     "message": "User made super admin successfully."
-  }
+   }
 
 ### 🍕 Menu Management
 
@@ -152,8 +154,10 @@ The Pizza Ordering Service is a full-stack web application that enables users to
   <span style="color: yellow;">**Request:**</span>
   ```http ...
   GET http:localhost:3000/api/menu/all
-  
+  ```
+
   <span style="color: green;">Response:</span>
+  ```json
       {
     "status": 200,
     "message": "All menu",
@@ -250,8 +254,9 @@ The Pizza Ordering Service is a full-stack web application that enables users to
 - POST /api/order/add  
   Place a new order (protected, requires JWT).
   <span style="color: yellow;">Request:</span>
+  ```http
     POST http:localhost:3000/api/order/add
-  Content-Type: application/json
+   Content-Type: application/json
   {
     "customer_id": 1,
     "restaurant_id": 1,
@@ -268,7 +273,9 @@ The Pizza Ordering Service is a full-stack web application that enables users to
             "quantity": 1
         }
     ]
- }
+  }
+   ```
+   
 
 
  <span style="color: yellow;">**Response:**</span>
@@ -284,9 +291,11 @@ The Pizza Ordering Service is a full-stack web application that enables users to
 - GET /api/order/get-order  
   Retrieve the order history of the currently authenticated user.
   <span style="color: yellow;">Request:</span>
+    ```http
     GET http://localhost:3000/api/order/get-order
+    ```
 
- <span style="color: yellow;">**Response:**</span>
+  <span style="color: yellow;">**Response:**</span>
   ```json
   {
     "status": 200,
