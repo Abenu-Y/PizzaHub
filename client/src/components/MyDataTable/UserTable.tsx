@@ -218,7 +218,7 @@ const UserTable: React.FC = () => {
     enableFilterMatchHighlighting:false,
     positionToolbarAlertBanner: 'bottom', // Show selected rows count on bottom toolbar
     // Add custom action buttons to top-left of top toolbar
-    renderTopToolbarCustomActions: ({ table }) => (
+    renderTopToolbarCustomActions: () => (
       <Box sx={{ display: 'flex', gap: '1rem', p: '4px' }}>
         <Button
            sx={{background:"#FF8100" }}

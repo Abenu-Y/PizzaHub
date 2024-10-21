@@ -1,7 +1,7 @@
 
 const api_url = import.meta.env.VITE_API_URL;
 import axios from 'axios';
-import { addMenu } from '../utils/validation/type';
+// import { addMenu } from '../utils/validation/type';
 
 const addMENU = async(pizzaInfo:any,token:string | undefined) =>{
    try {

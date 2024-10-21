@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { Dialog,DialogContent, TextField, Button, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { useAuth } from '../../context/authContext';
 import dashboardRoleService from '../../services/dashboardRole.service';
@@ -49,6 +49,7 @@ const AddUserModal: React.FC<CustomDialogProps> = ({ open, onClose }) => {
          //  setData()
         //  console.log(response)
          const dataroles = response.data.map((role:any,index:number)=>{
+          console.log(index)
            return{
              roleId: role.role_id,
              roleName:role.name
@@ -105,6 +106,15 @@ const AddUserModal: React.FC<CustomDialogProps> = ({ open, onClose }) => {
       >
         {
           error && (
+            <div className='text-red-500'>
+               {error}
+            </div>
+            
+          )
+        }
+
+        {
+          errors && (
             <div className='text-red-500'>
                {error}
             </div>

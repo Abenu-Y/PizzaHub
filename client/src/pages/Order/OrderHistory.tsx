@@ -1,5 +1,5 @@
 
-import { MockStatusPizza } from "../../utils/data/constants"
+// import { MockStatusPizza } from "../../utils/data/constants"
 import PizzaCard from "../../components/PizzaCard/PizzaCard";
 import Header from "../../components/Header/Header";
 import { useEffect, useState } from "react";

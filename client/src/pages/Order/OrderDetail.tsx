@@ -6,7 +6,7 @@ import { FormEvent, useEffect, useState } from "react";
 // import { MockPizza } from "../../utils/data/constants";
 import { defineAbility } from "../../services/permission/persmission";
 import { useAuth } from "../../context/authContext";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation,  useParams } from "react-router-dom";
 import pizzaService from "../../services/pizza.service";
 import { PizzaId,Pizza } from "../../utils/validation/type";
 import orderService from "../../services/order.service";
@@ -48,12 +48,14 @@ const OrderDetail = () => {
   const [open, setOpen] = useState(false);
   const [isOrdered, setIsOrdered] = useState(false)
   const token = user.user?.token
-    console.log(token)
+    console.log(token,open)
   
   // Handle closing the modal
   const handleClose = () => {
     setOpen(false);
   };
+
+  console.log(handleClose())
 
   const getAllPizza = async () => {
     try {

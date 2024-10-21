@@ -1,6 +1,4 @@
-import React from 'react'
 import classes from './notfound.module.css'
-
 
 
 import { useNavigate } from 'react-router-dom'

@@ -11,8 +11,6 @@ import {
   Box,
   Button,
   CircularProgress,
-  IconButton,
-  Tooltip,
   Typography,
 } from '@mui/material';
 import {
@@ -22,9 +20,9 @@ import {
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
-import { type User, fakeData, usStates } from './makeData';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { type User, fakeData} from './makeData';
+// import EditIcon from '@mui/icons-material/Edit';
+// import DeleteIcon from '@mui/icons-material/Delete';
 
 const Example = () => {
   const [validationErrors, setValidationErrors] = useState<
@@ -199,6 +197,8 @@ const Example = () => {
     }
   };
 
+   console.log(openDeleteConfirmModal)
+
   const table = useMaterialReactTable({
     columns,
     data: fetchedUsers,
@@ -281,6 +281,7 @@ function useCreateUser() {
   return useMutation({
     mutationFn: async (user: User) => {
       //send api update request here
+      console.log(user)
       await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
       return Promise.resolve();
     },
@@ -321,6 +322,7 @@ function useUpdateUsers() {
   return useMutation({
     mutationFn: async (users: User[]) => {
       //send api update request here
+      console.log(users)
       await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
       return Promise.resolve();
     },
@@ -337,12 +339,41 @@ function useUpdateUsers() {
   });
 }
 
+const validateUser = (values: User) => {
+  const errors: Record<string, string | undefined> = {};
+
+  if (!values.name) {
+    errors.name = 'Name is required';
+  }
+  if (!values.topping) {
+    errors.topping = 'Topping is required';
+  }
+  if (values.quantity === undefined || values.quantity <= 0) {
+    errors.quantity = 'Quantity must be greater than 0';
+  }
+  if (!values.customerNo) {
+    errors.customerNo = 'Customer No is required';
+  }
+  if (!values.createdAt) {
+    errors.createdAt = 'Created At is required';
+  }
+  if (!values.status) {
+    errors.status = 'Status is required';
+  }
+
+  return errors;
+};
+
+// Example component code continues here...
+
+
 //DELETE hook (delete user in api)
 function useDeleteUser() {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (userId: string) => {
       //send api update request here
+      console.log(userId)
       await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
       return Promise.resolve();
     },

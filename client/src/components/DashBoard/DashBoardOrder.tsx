@@ -67,7 +67,7 @@ const Example = () => {
     Cell: ({ cell }) => {
       const { isActive, id } = cell.getValue() as { isActive: boolean; id: number };
       return (
-        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: 'flex', alignItems: 'center' }} key={id}>
           <div className='px-4 py-2 mx-2 bg-green-100 rounded-full'>
               <span>Active</span>
               <Switch checked={isActive} size='small' color="success"
@@ -207,11 +207,11 @@ const Example = () => {
   };
 
   //DELETE action
-  const openDeleteConfirmModal = (row: MRT_Row<User>) => {
-    if (window.confirm('Are you sure you want to delete this user?')) {
-      deleteUser(row.original.id);
-    }
-  };
+  // const openDeleteConfirmModal = (row: MRT_Row<User>) => {
+  //   if (window.confirm('Are you sure you want to delete this user?')) {
+  //     deleteUser(row.original.id);
+  //   }
+  // };
 
   const table = useMaterialReactTable({
     columns,
@@ -304,6 +304,7 @@ function useCreateUser() {
   return useMutation({
     mutationFn: async (user: User) => {
       //send api update request here
+      console.log(user)
       await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
       return Promise.resolve();
     },
@@ -344,6 +345,7 @@ function useUpdateUsers() {
   return useMutation({
     mutationFn: async (users: User[]) => {
       //send api update request here
+      console.log(users)
       await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
       return Promise.resolve();
     },
@@ -366,6 +368,7 @@ function useDeleteUser() {
   return useMutation({
     mutationFn: async (userId: string) => {
       //send api update request here
+      console.log(userId)
       await new Promise((resolve) => setTimeout(resolve, 1000)); //fake api call
       return Promise.resolve();
     },

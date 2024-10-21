@@ -1,4 +1,4 @@
-import { BrowserRouter as Router,Routes,Route } from "react-router-dom"
+import { Routes,Route } from "react-router-dom"
 import Home from "./pages/Home/Home"
 import AuthPage from "./pages/auth/AuthPage"
 import Register from "./components/auth/Register/Register"
@@ -15,7 +15,6 @@ function App() {
 
   return (
     <>
-      {/* <Router> */}
          <Routes>
              <Route path="/" element={<Home/>} />
              <Route path="/about" element={<AboutUs/>} />
@@ -27,7 +26,6 @@ function App() {
              <Route path="/dashboard" element={<DashBoard />} />
              <Route path="*" element={<NotFound />} />
          </Routes>
-      {/* </Router> */}
     </>
   )
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import Header from "../Header/Header";
 import orderUsImage from '../../assets/image/Image_order_us.png';
 import leaveImage from '../../assets/image/leavepng.png';

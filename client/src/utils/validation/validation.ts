@@ -1,5 +1,5 @@
 import { z, ZodType } from 'zod';
-import { adminRegisterData, formData,loginformData ,ToppingsFormData, addAdmin, addRole} from './type';
+import { adminRegisterData, formData,loginformData ,ToppingsFormData, addAdmin} from './type';
 
 
 export const registerSchema: ZodType<formData> = z.object({
