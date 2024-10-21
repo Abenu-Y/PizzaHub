@@ -255,8 +255,8 @@ The Pizza Ordering Service is a full-stack web application that enables users to
   Place a new order (protected, requires JWT).
   <span style="color: yellow;">Request:</span>
   ```http
-    POST http:localhost:3000/api/order/add
-   Content-Type: application/json
+  POST http:localhost:3000/api/order/add
+  Content-Type: application/json
   {
     "customer_id": 1,
     "restaurant_id": 1,
@@ -291,9 +291,9 @@ The Pizza Ordering Service is a full-stack web application that enables users to
 - GET /api/order/get-order  
   Retrieve the order history of the currently authenticated user.
   <span style="color: yellow;">Request:</span>
-    ```http
-    GET http://localhost:3000/api/order/get-order
-    ```
+  ```http
+        GET http://localhost:3000/api/order/get-order
+  ```
 
   <span style="color: yellow;">**Response:**</span>
   ```json
