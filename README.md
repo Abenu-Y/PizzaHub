@@ -65,7 +65,7 @@ The Pizza Ordering Service is a full-stack web application that enables users to
 
   {
     "email":"abeneyoseph005@pizza.com",
-    "password":"abenez",
+    "password":"*****",
     "location":"dilla",
     "phoneNumber":"0972685212"
   }
@@ -90,7 +90,7 @@ The Pizza Ordering Service is a full-stack web application that enables users to
 
   {
     "email":"abeneyoseph@pizza.com",
-    "password":"abenez",
+    "password":"***********",
   }
   ```
 
@@ -116,7 +116,7 @@ The Pizza Ordering Service is a full-stack web application that enables users to
      "adminName":"AbenezerYospeh" ,
     "restaurantName":"Delight005",
     "email":"abeneyoseph005@pizza.com",
-    "password":"abenez",
+    "password":"******",
     "location":"dilla",
     "phoneNumber":"0972685212"
   }
